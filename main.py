@@ -32,8 +32,7 @@ def main():
     tornado.options.parse_command_line()
     application = tornado.web.Application(
         handlers=[(r"/", IndexHandler),
-        (r"/404/(\w+)",TestHandler),
-        (r"/db"),DbHandler],
+        (r"/404/(\w+)",TestHandler)],
         static_path=os.path.join(os.path.dirname(__file__),"static"),
         template_path=os.path.join(os.path.dirname(__file__), "templates")
         )
