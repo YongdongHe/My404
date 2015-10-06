@@ -22,7 +22,7 @@ import tornado.ioloop
 import tornado.options
 import tornado.web
 # from mod.testapi.handler import testHandler
-from mod.testapi.handler import DbHandler
+# from mod.testapi.handler import DbHandler
 
 from tornado.options import define, options
 
