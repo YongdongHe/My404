@@ -1,0 +1,56 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<script type="text/javascript" src="{{static_url("jquery-1.11.3.min.js")}}"></script>
+</head>
+<body>
+	<form action="/404" method="post" accept-charset="utf-8" id="ajaxform">
+		<div><input type="text" name="input" value="1" id="input" /></div>
+	</form>
+	<button type="" id="send" >发送</button>
+	<button type="" id="send2">发送2</button>
+</body>
+<script type="text/javascript">
+	$("#send").click(function(event) {
+		/* Act on the event */
+		$.ajax({
+			url: '/404',
+			type: 'GET',
+			// dataType: 'json',
+		})
+		.done(function() {
+			console.log("success");
+		})
+		.fail(function() {
+			console.log("error");
+		})
+		.always(function() {
+			alert("已发送");
+			console.log("complete");
+		});
+	});
+
+	$("#send2").click(function(event) {
+		/* Act on the event */
+        var coursename = $("#input").val()
+		$.ajax({
+			url: '/404',
+			type: 'POST',
+			data: {course: coursename},
+			success: function (response) {
+				// body...
+				alert(response);
+			}
+		})
+		.fail(function() {
+			console.log("error");
+		})
+		.always(function() {
+			console.log("complete");
+		});
+	
+	});
+</script>
+</html>
