@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>{{user.user_name}}</title>
+	<link rel="stylesheet" href="">
+</head>
+<body>
+	{% for article in articles %}
+	<li>{{article.content}}</li>
+	{% end %}
+</body>
+</html>
