@@ -5,8 +5,40 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>404 not FFFFFound!!!</title>
 	<script type="text/javascript" src="{{static_url("js/jquery-1.11.3.min.js")}}"></script>
+	<script src="//unslider.com/unslider.js"></script>
+	<link rel="stylesheet" type="text/css" href="{{static_url("css/home.css")}}">
 </head>
 <body>
-	
+	<div class="banner">
+    <ul>
+        <li>
+        	<img class="homeslide" src="{{static_url("img/slide_home1.jpg")}}" alt="">
+        </li>
+        <li>
+        	<div class="homeslide">
+        		<h1>sd</h1>
+        	</div>
+        </li>
+        <li style="background-image: url('{{static_url("img/slide_home2.jpg")}}');">
+			<div class="inner">
+				<h1>The jQuery slider that just slides.</h1>
+					<p>就是这个不到3kb的插件！没有奇特的特效或无用的标</p>
+					<a class="btn" href="#download">下载</a>
+			</div>
+		</li>
+    </ul>
+    </div>
 </body>
 </html>
+<script type="text/javascript">
+	$(document).ready(function() {
+		// body...
+		if(window.chrome) {
+				$('.banner li').css('background-size', '100% 100%');
+			}
+			
+		$(function() {
+			$('.banner').unslider();
+		});
+	})
+</script>
