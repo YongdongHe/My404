@@ -1,0 +1,15 @@
+.banner { position: relative; overflow: auto; }
+    .banner li { list-style: none; }
+        .banner ul li { float: left; }
+
+.homeslide{
+	width: 20%;
+	height: 10%;
+}
+
+div.homeslide{
+	background-color: #000000;
+	width: 60%;
+	height: 50%;
+
+}

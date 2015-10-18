@@ -48,7 +48,7 @@ define("port", default=3000, help="run on the given port", type=int)
 
 class IndexHandler(tornado.web.RequestHandler):
     def get(self):
-        self.render('index.html')
+        self.render('home.html')
 
 
 class TestHandler(tornado.web.RequestHandler):
@@ -87,5 +87,5 @@ class Application(tornado.web.Application):
 
 if __name__ == '__main__':
     tornado.options.parse_command_line()
-    Application().listen(options.port, address='127.0.0.1')
+    Application().listen(options.port)
     tornado.ioloop.IOLoop.instance().start()
