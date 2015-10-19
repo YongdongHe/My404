@@ -53,7 +53,7 @@ class IndexHandler(tornado.web.RequestHandler):
 
 class IndexPageHandler(tornado.web.RequestHandler):
     def get(self):
-        self.render('index.html')
+        self.render('homepage\index.html')
 
 
 class Application(tornado.web.Application):
