@@ -55,6 +55,11 @@ class IndexPageHandler(tornado.web.RequestHandler):
     def get(self):
         self.render('homepage\index.html')
 
+class HomePageHandler(tornado.web.RequestHandler):
+    def get(self,args):
+        print args[0::]
+        self.render('homepage\%s.html'%(args[0::]))
+
 
 class Application(tornado.web.Application):
 
@@ -62,6 +67,7 @@ class Application(tornado.web.Application):
         handlers = [
         (r"/", IndexHandler),
         (r"/404",IndexPageHandler),
+        (r"/home/(\w+)",HomePageHandler),
         (r"/db",DbHandler),
         (r"/article",ArticleHandler),
         (r"/userhome",UserhomeHandler)

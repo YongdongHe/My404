@@ -1,76 +1,15 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>404Home</title>
-	<link href="{{static_url("css/style.css")}}" rel="stylesheet" type="text/css" media="all" />
-	<!--fonts-->
-		<link href='http://fonts.useso.com/css?family=Sintony:700,400' rel='stylesheet' type='text/css'>
-		<link href='http://fonts.useso.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
-	<!--//fonts-->
-		<link href="{{static_url("css/bootstrap.css")}}" rel="stylesheet" type="text/css" media="all" />
-	<!-- for-mobile-apps -->
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<meta name="keywords" content="Infusion Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
-		Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
-		<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-	<!-- //for-mobile-apps -->
-	<!-- js -->
-		<script type="text/javascript" src="{{static_url("js/jquery.min.js")}}"></script>
-	<!-- js -->
-	<!-- start-smooth-scrolling -->
-		<script type="text/javascript" src="{{static_url("js/move-top.js")}}"></script>
-		<script type="text/javascript" src="{{static_url("js/easing.js")}}"></script>
-		<script type="text/javascript">
-			jQuery(document).ready(function($) {
-				$(".scroll").click(function(event){		
-					event.preventDefault();
-					$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
-				});
-			});
-		</script>
-	<!-- start-smooth-scrolling -->
-
-</head>
-<body>
+{% extends "cache.html" %}
+{% block title %}404's home{% end %}
 <!-- header -->
-<div class="header">
-	<div class="header-left">
-		<!-- <a href="index.html"><img src="{{static_url("img/home/logo.png")}}" alt=""/></a> -->
-		<a href="index.html"><h3>404's Home</h3></a>
-	</div>
-	<div class="header-right">
-		<span class="menu"><img src="{{static_url("img/home/menu.png")}}" alt=""/></span>
-				<ul class="nav1">
-					<li><a class="active" href="index.html">DESIGN FOLIO</a></li>
-					<li><a href="services.html">SERVICES</a></li>
-					<li><a href="business.html">  OUR BUSINESS </a></li>
-					<li><a href="about.html">HOW WE HELP</a></li>	
-					<li><a href="404.html">TAKE THE TOUR</a></li>
-					<li><a href="contact.html">CONTACT</a></li>
-				</ul>
-				<!-- script for menu -->
-					<script> 
-						$( "span.menu" ).click(function() {
-						$( "ul.nav1" ).slideToggle( 300, function() {
-						 // Animation complete.
-						});
-						});
-					</script>
-				<!-- //script for menu -->
-
-	</div>
-	<div class="clearfix"></div>
-</div>
-<!-- //header -->
+{% block content %}
 <!-- banner -->
 <div class="banner" style="background:url({{static_url("img/home/banner.jpg")}});background-position:center;
   background-repeat:no-repeat;">
 	<div class="container">
 		<div class="banner-info text-center">
-			<h1>CUTTING EDGE WP BUSINESS THEME</h1>
-			<p>Gutful of bottlo no dramas he's got a massive hooroo. 
-			<span>Stands out like a ridgy-didge also shazza got us.</span></p>
+			<h1><i class="fa fa-map-marker"></i> 2013-2017 SouthEastUniversity</h1>
+			<p>404NotFound Club
+			<span>毕业之前总得留下点什么.--3A 404</span></p>
 			<a href="#">Join Us Now</a>
 			<div class="uparrow">
 				<img src="{{static_url("img/home/uparrow.png")}}" alt=""/>
@@ -656,65 +595,5 @@
 		</div>
 	</div>
 </div>	
-<!-- //slider -->
-<!-- footer -->
-<div class="footer">
-	<div class="container">
-		<div class="footer-grids">
-			<div class="col-md-2 footer-grid logobtm">
-				<a href="index.html">寄语</a>
-			</div>
-			<div class="col-md-7 footer-grid">
-				<p>
-					无他，希望嘟嘟越来越逗比。 
-				</p>
-				<p>————1号床</p>
-				<br>
-				<p>
-					活着没意思。 
-				</p>
-				<p>————2号床</p>
-				<br>
-				<p>
-					学习的目的是为了探索这个世界的真理。 
-				</p>
-				<p>————3号床</p>
-				<br>
-				<p>
-					好。 
-				</p>
-				<p>————4号床</p>
-			</div>
-			<div class="col-md-2 footer-grid">
-				<ul>
-					<li><a href="#">List one</a></li>
-					<li><a href="#">Page two</a></li>
-					<li><a href="#">Design</a></li>
-					<li><a href="#">Work</a></li>
-					<li><a href="contact.html">Contact Me</a></li>
-				</ul>
-			</div>
-			<div class="clearfix"> </div>
-		</div>
-	</div>
-</div>
-<!-- //footer -->
-<!-- smooth scrolling -->
-	<script type="text/javascript">
-		$(document).ready(function() {
-		/*
-			var defaults = {
-			containerID: 'toTop', // fading element id
-			containerHoverID: 'toTopHover', // fading element hover id
-			scrollSpeed: 1200,
-			easingType: 'linear' 
-			};
-		*/								
-		$().UItoTop({ easingType: 'easeOutQuart' });
-		});
-	</script>
-	<a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
-<!-- //smooth scrolling -->
+{% end %}
 
-</body>
-</html>

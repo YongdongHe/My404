@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>404</title>
-	<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+	<title> {% block title %}{% end %}</title>
+	<link href="{{static_url("css/style.css")}}" rel="stylesheet" type="text/css" media="all" />
 	<!--fonts-->
 		<link href='http://fonts.useso.com/css?family=Sintony:700,400' rel='stylesheet' type='text/css'>
 		<link href='http://fonts.useso.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
 	<!--//fonts-->
-		<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="{{static_url("css/bootstrap.css")}}" rel="stylesheet" type="text/css" media="all" />
+		<link rel="stylesheet" type="text/css" href="{{static_url("css/font-awesome.min.css")}}">
 	<!-- for-mobile-apps -->
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -16,11 +17,11 @@
 		<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 	<!-- //for-mobile-apps -->
 	<!-- js -->
-		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="{{static_url("js/jquery.min.js")}}"></script>
 	<!-- js -->
 	<!-- start-smooth-scrolling -->
-		<script type="text/javascript" src="js/move-top.js"></script>
-		<script type="text/javascript" src="js/easing.js"></script>
+		<script type="text/javascript" src="{{static_url("js/move-top.js")}}"></script>
+		<script type="text/javascript" src="{{static_url("js/easing.js")}}"></script>
 		<script type="text/javascript">
 			jQuery(document).ready(function($) {
 				$(".scroll").click(function(event){		
@@ -36,17 +37,18 @@
 <!-- header -->
 <div class="header">
 	<div class="header-left">
-		<a href="index.html"><img src="images/logo.png" alt=""/></a>
+		<!-- <a href="index.html"><img src="{{static_url("img/home/logo.png")}}" alt=""/></a> -->
+		<a href="/404"><h3>404's Home</h3></a>
 	</div>
 	<div class="header-right">
-		<span class="menu"><img src="images/menu.png" alt=""/></span>
+		<span class="menu"><img src="{{static_url("img/home/menu.png")}}" alt=""/></span>
 				<ul class="nav1">
-					<li><a href="index.html">DESIGN FOLIO</a></li>
-					<li><a href="services.html">SERVICES</a></li>
-					<li><a href="business.html">  OUR BUSINESS </a></li>
-					<li><a href="about.html">HOW WE HELP</a></li>	
-					<li><a class="active" href="404.html">TAKE THE TOUR</a></li>
-					<li><a href="contact.html">CONTACT</a></li>
+					<li><a class="active" href="/404">DESIGN FOLIO</a></li>
+					<li><a href="/home/services">SERVICES</a></li>
+					<li><a href="/home/business">  OUR BUSINESS </a></li>
+					<li><a href="/home/about">HOW WE HELP</a></li>	
+					<li><a href="/home/404error">TAKE THE TOUR</a></li>
+					<li><a href="/home/contact">CONTACT</a></li>
 				</ul>
 				<!-- script for menu -->
 					<script> 
@@ -62,35 +64,36 @@
 	<div class="clearfix"></div>
 </div>
 <!-- //header -->
-<!-- 404 -->
-<div class="error-page">
-	<div class="container">
-		<div class="error-info">
-			<h3>4<span>0</span>4</h3>
-			<p>Page not found!!</p>
-			<p>Please try one of the following pages...</p>
-			<div class="home-page"><a href="index.html">HOME PAGE</a></div>
-		</div>
-	</div>
-</div>
-<!-- //404 -->
+<!-- how we help -->
+{% block content %}{% end %}
+<!-- //how we help -->
 <!-- footer -->
 <div class="footer">
 	<div class="container">
 		<div class="footer-grids">
 			<div class="col-md-2 footer-grid logobtm">
-				<a href="index.html">INFUSION</a>
+				<a href="index.html">寄语</a>
 			</div>
-			<div class="col-md-5 footer-grid">
-				<p>Nam mi enim, auctor non ultricies a, fringilla eu risus. Praesent 
-				vitae lorem et elit tincidunt accumsan suscipit eu libero. Maecenas diam est, 
-				venenatis vitae dui in, vestibulum mollis arcu. Donec eu nibh tincidunt, dapibus 
-				sem eu, aliquam dolor. Cum sociis natoque penatibus et magnis dis parturient montes, 
-				nascetur ridiculus mus. Vestibulum consectetur commodo eros, vitae laoreet lectus aliq</p>
-			</div>
-			<div class="col-md-3 footer-grid">
-				<p>aliquam dolor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur 
-				ridiculus mus. Vestibulum consectetur commodo eros, vitae laoreet lectus aliq</p>
+			<div class="col-md-7 footer-grid">
+				<p>
+					无他，希望嘟嘟越来越逗比。 
+				</p>
+				<p>————1号床</p>
+				<br>
+				<p>
+					活着没意思。 
+				</p>
+				<p>————2号床</p>
+				<br>
+				<p>
+					学习的目的是为了探索这个世界的真理。 
+				</p>
+				<p>————3号床</p>
+				<br>
+				<p>
+					好。 
+				</p>
+				<p>————4号床</p>
 			</div>
 			<div class="col-md-2 footer-grid">
 				<ul>
@@ -102,9 +105,6 @@
 				</ul>
 			</div>
 			<div class="clearfix"> </div>
-		</div>
-		<div class="copy-right">
-			<p>Copyright &copy; 2015.Company name All rights reserved.<a target="_blank" href="http://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a></p>
 		</div>
 	</div>
 </div>
@@ -125,6 +125,5 @@
 	</script>
 	<a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
 <!-- //smooth scrolling -->
-
 </body>
 </html>
