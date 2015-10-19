@@ -6,39 +6,26 @@
 	<title>404 not FFFFFound!!!</title>
 	<script type="text/javascript" src="{{static_url("js/jquery-1.11.3.min.js")}}"></script>
 	<script src="//unslider.com/unslider.js"></script>
+	<script type="text/javascript" src="{{static_url("js/flat-ui.js")}}"></script>
+	<link rel="stylesheet" type="text/css" href="{{static_url("css/flat-ui.css")}}">
 	<link rel="stylesheet" type="text/css" href="{{static_url("css/home.css")}}">
 </head>
 <body>
-	<div class="banner">
-    <ul>
-        <li>
-        	<img class="homeslide" src="{{static_url("img/slide_home1.jpg")}}" alt="">
-        </li>
-        <li>
-        	<div class="homeslide">
-        		<h1>sd</h1>
-        	</div>
-        </li>
-        <li style="background-image: url('{{static_url("img/slide_home2.jpg")}}');">
-			<div class="inner">
-				<h1>The jQuery slider that just slides.</h1>
-					<p>就是这个不到3kb的插件！没有奇特的特效或无用的标</p>
-					<a class="btn" href="#download">下载</a>
-			</div>
-		</li>
-    </ul>
-    </div>
+<!-- <div class="center">
+	<p>sad</p>
+</div>
+<div class="center">
+	<img src="{{static_url("img/slide_home1.jpg")}}" alt="">
+</div> -->
+
+<h1 class="center">404 not Found</h1>
+<h6 class="center">你猜服务器坏了没-。-</h6>
 </body>
-</html>
 <script type="text/javascript">
-	$(document).ready(function() {
+	setTimeout("toIndex()",3000);
+	function toIndex() {
 		// body...
-		if(window.chrome) {
-				$('.banner li').css('background-size', '100% 100%');
-			}
-			
-		$(function() {
-			$('.banner').unslider();
-		});
-	})
+		window.location.href="/404";
+	}
 </script>
+</html>

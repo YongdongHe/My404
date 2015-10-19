@@ -51,18 +51,9 @@ class IndexHandler(tornado.web.RequestHandler):
         self.render('home.html')
 
 
-class TestHandler(tornado.web.RequestHandler):
+class IndexPageHandler(tornado.web.RequestHandler):
     def get(self):
-        data = """
-            {
-                data : "ss"
-            }
-            """
-        self.write(data)
-
-    def post(self):
-        name = self.get_argument("course")
-        self.write(name+"added success")
+        self.render('index.html')
 
 
 class Application(tornado.web.Application):
@@ -70,7 +61,7 @@ class Application(tornado.web.Application):
     def __init__(self):
         handlers = [
         (r"/", IndexHandler),
-        (r"/404",TestHandler),
+        (r"/404",IndexPageHandler),
         (r"/db",DbHandler),
         (r"/article",ArticleHandler),
         (r"/userhome",UserhomeHandler)
