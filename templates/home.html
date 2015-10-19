@@ -5,8 +5,27 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>404 not FFFFFound!!!</title>
 	<script type="text/javascript" src="{{static_url("js/jquery-1.11.3.min.js")}}"></script>
+	<script src="//unslider.com/unslider.js"></script>
+	<script type="text/javascript" src="{{static_url("js/flat-ui.js")}}"></script>
+	<link rel="stylesheet" type="text/css" href="{{static_url("css/flat-ui.css")}}">
+	<link rel="stylesheet" type="text/css" href="{{static_url("css/home.css")}}">
 </head>
 <body>
-	
+<!-- <div class="center">
+	<p>sad</p>
+</div>
+<div class="center">
+	<img src="{{static_url("img/slide_home1.jpg")}}" alt="">
+</div> -->
+
+<h1 class="center">404 not Found</h1>
+<h6 class="center">你猜服务器坏了没-。-</h6>
 </body>
+<script type="text/javascript">
+	setTimeout("toIndex()",3000);
+	function toIndex() {
+		// body...
+		window.location.href="/404";
+	}
+</script>
 </html>

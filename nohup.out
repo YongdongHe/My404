@@ -15,3 +15,8 @@
 [W 151018 12:46:28 web:1908] 404 GET /userhome/user_id=0 (121.237.178.139) 0.54ms
 [I 151018 12:46:31 web:1908] 304 GET / (121.237.178.139) 1.78ms
 [I 151018 12:47:38 web:1908] 200 GET /userhome?user_id=1 (121.237.178.139) 180.54ms
+[I 151020 00:09:40 autoreload:204] main.py modified; restarting server
+  File "main.py", line 88
+    <<<<<<< HEAD
+     ^
+SyntaxError: invalid syntax

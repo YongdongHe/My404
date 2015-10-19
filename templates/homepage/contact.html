@@ -1,0 +1,46 @@
+{% extends "cache.html" %}
+{% block title %}contact us{% end %}
+<!-- header -->
+{% block content %}
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=ZvGx486DtaVtWrydYG5uOAPA"></script>
+<div class="contact">
+	<div class="container">
+		<div class="contact-info">
+			<h3>GET IN <span> TOUCH</span></h3>
+		</div>
+		<div class="contact-map">
+			<div id="map" style="width: 1000px;height: 300px"></div>
+		</div>
+		<div class="contact-form">
+			<div class="contact-info">
+				<h3>CONTACT <span> FORM</span></h3>
+			</div>
+			<form>
+				<div class="contact-left">
+					<input type="text" placeholder="Name" required>
+					<input type="text" placeholder="E-mail" required>
+					<input type="text" placeholder="Subject" required>
+				</div>
+				<div class="contact-right">
+					<textarea placeholder="Message" required></textarea>
+				</div>
+				<div class="clearfix"></div>
+				<input type="submit" value="SUBMIT">
+			</form>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	$(document).ready(function() {
+		// body...
+		var map = new BMap.Map("map");
+		map.centerAndZoom(new BMap.Point(118.832858, 31.888646), 18);
+		map.enableScrollWheelZoom(true);
+		map.clearOverlays();
+		var new_point = new BMap.Point(118.832858, 31.888646);
+		var marker = new BMap.Marker(new_point); // 创建标注
+		map.addOverlay(marker); // 将标注添加到地图中
+		map.panTo(new_point);
+	});
+</script>
+{% end %}

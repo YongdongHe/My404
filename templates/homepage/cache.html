@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> {% block title %}{% end %}</title>
+	<link href="{{static_url("css/style.css")}}" rel="stylesheet" type="text/css" media="all" />
+	<!--fonts-->
+		<link href='http://fonts.useso.com/css?family=Sintony:700,400' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.useso.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
+	<!--//fonts-->
+		<link href="{{static_url("css/bootstrap.css")}}" rel="stylesheet" type="text/css" media="all" />
+		<link rel="stylesheet" type="text/css" href="{{static_url("css/font-awesome.min.css")}}">
+	<!-- for-mobile-apps -->
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="keywords" content="Infusion Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
+		Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+		<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+	<!-- //for-mobile-apps -->
+	<!-- js -->
+		<script type="text/javascript" src="{{static_url("js/jquery.min.js")}}"></script>
+	<!-- js -->
+	<!-- start-smooth-scrolling -->
+		<script type="text/javascript" src="{{static_url("js/move-top.js")}}"></script>
+		<script type="text/javascript" src="{{static_url("js/easing.js")}}"></script>
+		<script type="text/javascript">
+			jQuery(document).ready(function($) {
+				$(".scroll").click(function(event){		
+					event.preventDefault();
+					$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+				});
+			});
+		</script>
+	<!-- start-smooth-scrolling -->
+
+</head>
+<body>
+<!-- header -->
+<div class="header">
+	<div class="header-left">
+		<!-- <a href="index.html"><img src="{{static_url("img/home/logo.png")}}" alt=""/></a> -->
+		<a href="/404"><h3>404's Home</h3></a>
+	</div>
+	<div class="header-right">
+		<span class="menu"><img src="{{static_url("img/home/menu.png")}}" alt=""/></span>
+				<ul class="nav1">
+					<li><a class="active" href="/404">DESIGN FOLIO</a></li>
+					<li><a href="/home/services">Services</a></li>
+					<li><a href="/home/business">Our Project</a></li>
+					<li><a href="/home/about">About</a></li>	
+					<li><a href="/home/single">Blog</a></li>
+					<li><a href="/home/contact">Contact</a></li>
+				</ul>
+				<!-- script for menu -->
+					<script> 
+						$( "span.menu" ).click(function() {
+						$( "ul.nav1" ).slideToggle( 300, function() {
+						 // Animation complete.
+						});
+						});
+					</script>
+				<!-- //script for menu -->
+
+	</div>
+	<div class="clearfix"></div>
+</div>
+<!-- //header -->
+<!-- how we help -->
+{% block content %}{% end %}
+<!-- //how we help -->
+<!-- footer -->
+<div class="footer">
+	<div class="container">
+		<div class="footer-grids">
+			<div class="col-md-2 footer-grid logobtm">
+				<a href="index.html">寄语</a>
+			</div>
+			<div class="col-md-7 footer-grid">
+				<p>
+					无他，希望嘟嘟越来越逗比。 
+				</p>
+				<p>————1号床</p>
+				<br>
+				<p>
+					活着没意思。 
+				</p>
+				<p>————2号床</p>
+				<br>
+				<p>
+					学习的目的是为了探索这个世界的真理。 
+				</p>
+				<p>————3号床</p>
+				<br>
+				<p>
+					好。 
+				</p>
+				<p>————4号床</p>
+			</div>
+			<div class="col-md-2 footer-grid">
+				<ul>
+					<li><a href="#">List one</a></li>
+					<li><a href="#">Page two</a></li>
+					<li><a href="#">Design</a></li>
+					<li><a href="#">Work</a></li>
+					<li><a href="contact.html">Contact Me</a></li>
+				</ul>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+</div>
+<!-- //footer -->
+<!-- smooth scrolling -->
+	<script type="text/javascript">
+		$(document).ready(function() {
+		/*
+			var defaults = {
+			containerID: 'toTop', // fading element id
+			containerHoverID: 'toTopHover', // fading element hover id
+			scrollSpeed: 1200,
+			easingType: 'linear' 
+			};
+		*/								
+		$().UItoTop({ easingType: 'easeOutQuart' });
+		});
+	</script>
+	<a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
+<!-- //smooth scrolling -->
+</body>
+</html>
