@@ -87,5 +87,5 @@ class Application(tornado.web.Application):
 
 if __name__ == '__main__':
     tornado.options.parse_command_line()
-    Application().listen(options.port, address='127.0.0.1')
+    Application().listen(options.port)
     tornado.ioloop.IOLoop.instance().start()
