@@ -9,6 +9,7 @@
 	<!--//fonts-->
 		<link href="{{static_url("css/bootstrap.css")}}" rel="stylesheet" type="text/css" media="all" />
 		<link rel="stylesheet" type="text/css" href="{{static_url("css/font-awesome.min.css")}}">
+		<link rel="stylesheet" type="text/css" href="{{static_url("css/mystyle.css")}}">
 	<!-- for-mobile-apps -->
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -49,6 +50,12 @@
 					<li><a href="/home/about">About</a></li>	
 					<li><a href="/home/single">Blog</a></li>
 					<li><a href="/home/contact">Contact</a></li>
+					{% if register!=True %}
+					<li><a href="/home/register">Register</a></li>
+					{% else %}
+					<li><a href="/home/register">Info</a></li>
+					{% end %}
+
 				</ul>
 				<!-- script for menu -->
 					<script> 

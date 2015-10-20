@@ -1,0 +1,35 @@
+{% extends "cache.html" %}
+{% block title %}Register{% end %}
+{% block content %}
+<div class="register">
+	<div class="container" >
+		<div class="col-md-5" id="register-col">				
+			<div class="myform">
+				<h3>Register<span>FORM</span></h3>
+				<form>
+				<input type="text" id="email" placeholder="E-mail" required>			
+				<input type="text" id="name" placeholder="Name" required>			
+				<input type="password" id="psd" placeholder="Password" required>
+				<input type="password" id="conf_psd" placeholder="Password Confirme" required>
+				<label id="error1">·两次密码输入不一致</label>
+				<input type="submit" id="btn_sub" value="SUBMIT">
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#error1").hide();
+		$("#btn_sub").click(function(){
+			var psd = $("#psd").val();
+			var conf_psd = $("#conf_psd").val();
+			if(psd != conf_psd){
+				$("#psd").text('');
+				$("#conf_psd").text('');
+				$("#error1").show();
+			}
+		});
+	});
+</script>
+{% end %}

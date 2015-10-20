@@ -1,0 +1,56 @@
+
+.myform {
+	text-align: center;
+}
+.myform input[type=submit] {
+	color: #ffffff;
+	padding: 13px 43px;
+	font-size: 20px;
+	cursor: pointer;
+	font-weight: 500;
+	border:none;
+	background:#63c6ae;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.myform input[type=submit]:hover {
+	background:#455357;
+	transition: .5s all;
+	-webkit-transition: .5s all;
+	-o-transition: .5s all;
+	-ms-transition: .5s all;
+	-moz-transition: .5s all;	
+}
+
+.myform input[type=text],
+.myform input[type=password]{
+	width: 100%;
+	color: #63C6AE;
+	margin: 0px 0px 23px;
+	font-size: 14px;
+	padding: 12px 10px;
+	outline: medium none;
+	border: 1px solid #E8E8E8;
+}
+
+#register-col
+{
+	margin-left: auto;
+	margin-right: auto;
+	float: none;
+	margin-top: 100px;
+	margin-bottom: 100px;
+}
+.myform h3{
+	margin-top: 10px;
+	margin-bottom: 10px;
+	color: #737C85;
+	font-size: 24px;
+	font-weight: bold;
+}
+.myform span{
+	font-size: 24px;
+	font-weight: bold;
+	color: #63C6AE;
+}
