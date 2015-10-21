@@ -64,13 +64,13 @@ class RegisterHelper(object):
         return True
 
     def CheckEmail(self):
-        # if len(self.email) < 7:
-        #     raise RegisterError("Length of email must be greater than or equal to 7",400);
-        # if re.match("^.+\\@(\\[?)[a-zA-Z0-9\\-\\.]+\\.([a-zA-Z]{2,3}|[0-9]{1,3})(\\]?)$", self.email) == None:
-        #     raise RegisterError("Invalid Email Address",400)
-        # user = self.db.query(User).filter(User.user_email == self.email).first()
-        # if user!=None:
-        #     raise RegisterError("Existed Email Address",403)
+        if len(self.email) < 7:
+            raise RegisterError("Length of email must be greater than or equal to 7",400);
+        if re.match("^.+\\@(\\[?)[a-zA-Z0-9\\-\\.]+\\.([a-zA-Z]{2,3}|[0-9]{1,3})(\\]?)$", self.email) == None:
+            raise RegisterError("Invalid Email Address",400)
+        user = self.db.query(User).filter(User.user_email == self.email).first()
+        if user!=None:
+            raise RegisterError("Existed Email Address",403)
         return True
 
     def CheckName(self):

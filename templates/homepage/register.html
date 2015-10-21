@@ -12,6 +12,8 @@
 				<input type="password" id="psd" placeholder="Password" required>
 				<input type="password" id="conf_psd" placeholder="Password Confirme" required>
 				</form>
+				<div class="alert alert-danger" role="alert" id="msg_danger">error</div>
+				<div class="alert alert-success" role="alert" id="msg_success">success</div>
 				<button type="submit" id="btn_sub">Register</button>
 			</div>
 		</div>
@@ -19,36 +21,27 @@
 </div>
 <script type="text/javascript">
 	$(document).ready(function(){
-		$("#error1").hide();
-		
+		$("#msg_danger").hide();
+		$("#msg_success").hide();
 		$("#btn_sub").click(function(){
 			var input_email = $("#email").val();
 			var input_name = $("#name").val();
 			var input_psd = $("#psd").val();
 			var input_confpsd = $("#conf_psd").val();
-			console.log(input_email);
-			var data={
-				"email" : input_email,
-				"name" : input_name,
-				"psd" : input_psd,
-				"confpsd" : input_confpsd
-			};
-			// $.ajax({
-			// 	url: '/register',
-			// 	type: 'POST',
-			// 	dataType: 'json',
-			// 	data: {email: input_email,name : input_name,psd: input_psd , confpsd: input_confpsd},
-				
-			// });	
-
-
 			$.ajax({
 				url: '/register',
 				type: 'post',
 				dataType: 'json',
 				data: {email: input_email,name : input_name,psd: input_psd , confpsd: input_confpsd},
 				success: function(data){
-					alert(data["data"]);
+					if(data["status"]==200){
+						$("#msg_success").text(data["data"]);
+						$("#msg_success").show();
+					}else{
+						$("#msg_danger").text(data["data"]);
+						$("#msg_danger").show();
+					}
+					
 				}
 			})
 			
