@@ -11,9 +11,8 @@
 				<input type="text" id="name" placeholder="Name" required>			
 				<input type="password" id="psd" placeholder="Password" required>
 				<input type="password" id="conf_psd" placeholder="Password Confirme" required>
-				<label id="error1">·两次密码输入不一致</label>
-				<input type="submit" id="btn_sub" value="SUBMIT">
 				</form>
+				<button type="submit" id="btn_sub">Register</button>
 			</div>
 		</div>
 	</div>
@@ -23,19 +22,37 @@
 		$("#error1").hide();
 		
 		$("#btn_sub").click(function(){
-			var input_email = $("#email").text();
-			var input_name = $("#name").text();
+			var input_email = $("#email").val();
+			var input_name = $("#name").val();
 			var input_psd = $("#psd").val();
 			var input_confpsd = $("#conf_psd").val();
+			console.log(input_email);
+			var data={
+				"email" : input_email,
+				"name" : input_name,
+				"psd" : input_psd,
+				"confpsd" : input_confpsd
+			};
+			// $.ajax({
+			// 	url: '/register',
+			// 	type: 'POST',
+			// 	dataType: 'json',
+			// 	data: {email: input_email,name : input_name,psd: input_psd , confpsd: input_confpsd},
+				
+			// });	
+
+
 			$.ajax({
 				url: '/register',
-				type: 'POST',
+				type: 'post',
 				dataType: 'json',
 				data: {email: input_email,name : input_name,psd: input_psd , confpsd: input_confpsd},
 				success: function(data){
-					alert(data);
+					alert(data["data"]);
 				}
-			})			
+			})
+			
+			
 		});
 	});
 </script>

@@ -23,6 +23,27 @@
 	-moz-transition: .5s all;	
 }
 
+.myform button[type=submit] {
+	color: #ffffff;
+	padding: 13px 43px;
+	font-size: 20px;
+	cursor: pointer;
+	font-weight: 500;
+	border:none;
+	background:#63c6ae;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.myform button[type=submit]:hover {
+	background:#455357;
+	transition: .5s all;
+	-webkit-transition: .5s all;
+	-o-transition: .5s all;
+	-ms-transition: .5s all;
+	-moz-transition: .5s all;	
+}
+
 .myform input[type=text],
 .myform input[type=password]{
 	width: 100%;

@@ -15,11 +15,15 @@ class RegisterHandler(tornado.web.RequestHandler):
 
     def post(self):
         debugPrint = Color()
-        # debugPrint.print_green_text("DebugMsgIn%s"%('RegisterHandler'))
+        debugPrint.print_green_text("DebugMsgIn%s"%('RegisterHandler'))
         email = self.get_argument("email")
         name = self.get_argument("name")
         psd = self.get_argument("psd")
         confpsd = self.get_argument("confpsd")
+        debugPrint.print_green_text("DebugMsgIn%s:%s"%('RegisterHandler',email))
+        debugPrint.print_green_text("DebugMsgIn%s:%s"%('RegisterHandler',name))
+        debugPrint.print_green_text("DebugMsgIn%s:%s"%('RegisterHandler',psd))
+        debugPrint.print_green_text("DebugMsgIn%s:%s"%('RegisterHandler',confpsd))
         data={}
         try:
             helper = RegisterHelper(self.db,email,name,psd,confpsd)
@@ -37,6 +41,7 @@ class RegisterHandler(tornado.web.RequestHandler):
         except RegisterError, e:            
             data["status"] = e.getErrorCode()
             data["data"] = e.getErrorMsg()
+            debugPrint.print_green_text("DebugMsgIn%s:%s%s"%('RegisterHandler',"Register failed",e.getErrorMsg()))
             self.write(data)
 
 
