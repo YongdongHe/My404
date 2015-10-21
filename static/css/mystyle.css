@@ -23,7 +23,7 @@
 	-moz-transition: .5s all;	
 }
 
-.myform button[type=submit] {
+.myform button{
 	color: #ffffff;
 	padding: 13px 43px;
 	font-size: 20px;
@@ -35,7 +35,26 @@
 	margin-right: auto;
 }
 
-.myform button[type=submit]:hover {
+.myform button:hover {
+	background:#455357;
+	transition: .5s all;
+	-webkit-transition: .5s all;
+	-o-transition: .5s all;
+	-ms-transition: .5s all;
+	-moz-transition: .5s all;	
+}
+
+.myform button[type=submit]{
+	background:#63c6ae;
+}
+
+.myform button[type=log]{
+	background:#6C94C7;
+}
+
+.myform button[type=submit]:hover,
+.myform button[type=log]:hover
+ {
 	background:#455357;
 	transition: .5s all;
 	-webkit-transition: .5s all;

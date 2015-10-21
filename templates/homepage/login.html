@@ -5,17 +5,15 @@
 	<div class="container" >
 		<div class="col-md-5" id="register-col">				
 			<div class="myform">
-				<h3>Register<span>FORM</span></h3>
+				<h3>Login<span>FORM</span></h3>
 				<form>
-				<input type="text" id="email" placeholder="E-mail" required>			
-				<input type="text" id="name" placeholder="Name" required>			
+				<input type="text" id="email" placeholder="E-mail" required>					
 				<input type="password" id="psd" placeholder="Password" required>
-				<input type="password" id="conf_psd" placeholder="Password Confirme" required>
 				</form>
 				<div class="alert alert-danger" role="alert" id="msg_danger">error</div>
 				<div class="alert alert-success" role="alert" id="msg_success">success</div>
-				<button type="submit" id="btn_reg">Register</button>
-				<button type="log">Log in</button>
+				<button type="log" id="btn_log">Log in</button>
+				<button type="submit" id="btn_sub">Register</button>
 			</div>
 		</div>
 	</div>
@@ -24,16 +22,14 @@
 	$(document).ready(function(){
 		$("#msg_danger").hide();
 		$("#msg_success").hide();
-		$("#btn_reg").click(function(){
+		$("#btn_log").click(function(){
 			var input_email = $("#email").val();
-			var input_name = $("#name").val();
 			var input_psd = $("#psd").val();
-			var input_confpsd = $("#conf_psd").val();
 			$.ajax({
-				url: '/register',
+				url: '/login',
 				type: 'post',
 				dataType: 'json',
-				data: {email: input_email,name : input_name,psd: input_psd , confpsd: input_confpsd},
+				data: {email: input_email,psd: input_psd},
 				success: function(data){
 					if(data["status"]==200){
 						$("#msg_danger").hide();
