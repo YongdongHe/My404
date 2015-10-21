@@ -15,6 +15,7 @@ class Article(Base):
 class User(Base):
 	__tablename__ = 'users'
 	user_id = Column(Integer,primary_key = True)
+	user_email = Column(String)
 	user_name = Column(String)
 	user_psd = Column(String)
 

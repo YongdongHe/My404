@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
-DB_HOST = '127.0.0.1'
+DB_HOST = '139.129.23.136'
 # DB_HOST = '127.0.0.1'
-DB_USER = 'root'
+DB_USER = 'my404'
 # DB_USER = 'root'
-DB_PWD = '1995126'
+DB_PWD = '404404404'
 # DB_PWD = '084358'
 DB_NAME = 'my404'
 
