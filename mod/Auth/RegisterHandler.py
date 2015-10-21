@@ -1,6 +1,6 @@
 from tornado.httpclient import HTTPRequest, AsyncHTTPClient
 from mod.databases.tables import User
-from mod.Debug.Col import Color
+# from mod.Debug.Col import Color
 import re
 import tornado.web
 import tornado.gen
