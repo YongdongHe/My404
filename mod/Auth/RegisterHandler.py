@@ -14,16 +14,16 @@ class RegisterHandler(tornado.web.RequestHandler):
         return self.application.db
 
     def post(self):
-        debugPrint = Color()
-        debugPrint.print_green_text("DebugMsgIn%s"%('RegisterHandler'))
+        # debugPrint = Color()
+        # debugPrint.print_green_text("DebugMsgIn%s"%('RegisterHandler'))
         email = self.get_argument("email")
         name = self.get_argument("name")
         psd = self.get_argument("psd")
         confpsd = self.get_argument("confpsd")
-        debugPrint.print_green_text("DebugMsgIn%s:%s"%('RegisterHandler',email))
-        debugPrint.print_green_text("DebugMsgIn%s:%s"%('RegisterHandler',name))
-        debugPrint.print_green_text("DebugMsgIn%s:%s"%('RegisterHandler',psd))
-        debugPrint.print_green_text("DebugMsgIn%s:%s"%('RegisterHandler',confpsd))
+        # debugPrint.print_green_text("DebugMsgIn%s:%s"%('RegisterHandler',email))
+        # debugPrint.print_green_text("DebugMsgIn%s:%s"%('RegisterHandler',name))
+        # debugPrint.print_green_text("DebugMsgIn%s:%s"%('RegisterHandler',psd))
+        # debugPrint.print_green_text("DebugMsgIn%s:%s"%('RegisterHandler',confpsd))
         data={}
         try:
             helper = RegisterHelper(self.db,email,name,psd,confpsd)
@@ -34,14 +34,14 @@ class RegisterHandler(tornado.web.RequestHandler):
                 #check :success or not
                 user = self.db.query(User).filter(User.user_name == name).first()
                 if(user.user_email == email):
-                    debugPrint.print_green_text("DebugMsgIn%s:%s"%('RegisterHandler',"Register success"))
+                    # debugPrint.print_green_text("DebugMsgIn%s:%s"%('RegisterHandler',"Register success"))
                     data["status"] = 200
                     data["data"] = "Register Success"
                     self.write(data)
         except RegisterError, e:            
             data["status"] = e.getErrorCode()
             data["data"] = e.getErrorMsg()
-            debugPrint.print_green_text("DebugMsgIn%s:%s%s"%('RegisterHandler',"Register failed",e.getErrorMsg()))
+            # debugPrint.print_green_text("DebugMsgIn%s:%s%s"%('RegisterHandler',"Register failed",e.getErrorMsg()))
             self.write(data)
 
 
