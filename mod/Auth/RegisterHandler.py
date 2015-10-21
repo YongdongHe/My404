@@ -35,6 +35,7 @@ class RegisterHandler(tornado.web.RequestHandler):
                 user = self.db.query(User).filter(User.user_name == name).first()
                 if(user.user_email == email):
                     # debugPrint.print_green_text("DebugMsgIn%s:%s"%('RegisterHandler',"Register success"))
+                    self.db.commit()
                     data["status"] = 200
                     data["data"] = "Register Success"
                     self.write(data)
@@ -86,7 +87,7 @@ class RegisterHelper(object):
             raise RegisterError("Invalid Password(Your password can only contants a-z and 0-9)",403)
         if(self.psd!=self.confpsd):
             raise RegisterError("Two Input Password Is Not The Same.",400)
-        if(len(self.psd)>=32 or len(self.psd)<=8):
+        if(len(self.psd)>32 or len(self.psd)<8):
             raise RegisterError("Length Of Password must between 8 to 32",400)
         return True
 
