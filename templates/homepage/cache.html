@@ -54,7 +54,7 @@
 					{% if correct_user==None %}
 					<li><a href="/home/login">Login/Register</a></li>
 					{% else %}
-					<li style="float: right;"><a href="/home/userhome">{{correct_user.user_name}},Logout</a></li>					
+					<li style="float: right;"><a href="/logout">{{correct_user.user_name}},Logout</a></li>					
 					{% end %}
 					<!-- Single button -->
 				</ul>

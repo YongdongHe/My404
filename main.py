@@ -32,6 +32,7 @@ from mod.ArticleHandler.ArticleHandler import ArticleHandler
 from mod.UserhomeHandler.UserhomeHandler import UserhomeHandler
 from mod.Auth.RegisterHandler import RegisterHandler
 from mod.Auth.LoginHandler import LoginHandler
+from mod.Auth.LogoutHandler import LogoutHandler
 from tornado.options import define, options
 
 define("port", default=3000, help="run on the given port", type=int)
@@ -60,6 +61,7 @@ class Application(tornado.web.Application):
         (r"/home/(\w+)",HomePageHandler),
         (r"/register",RegisterHandler),
         (r"/login",LoginHandler),
+        (r"/logout",LogoutHandler),
         (r"/db",DbHandler),
         (r"/article",ArticleHandler),
         (r"/userhome",UserhomeHandler)
