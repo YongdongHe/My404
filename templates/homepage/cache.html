@@ -50,13 +50,12 @@
 					<li><a href="/home/about">About</a></li>	
 					<li><a href="/home/single">Blog</a></li>
 					<li><a href="/home/contact">Contact</a></li>
-					<li><a href="/home/login">Login</a></li>
 					{% if register!=True %}
-					<li><a href="/home/register">Register</a></li>
+					<li><a href="/home/login">Login/Register</a></li>
 					{% else %}
-					<li><a href="/home/register">Register</a></li>
+					<li><a href="/home/login">{{session}}</a></li>
 					{% end %}
-
+				
 				</ul>
 				<!-- script for menu -->
 					<script> 

@@ -13,8 +13,9 @@
 				<div class="alert alert-danger" role="alert" id="msg_danger">error</div>
 				<div class="alert alert-success" role="alert" id="msg_success">success</div>
 				<button type="log" id="btn_log">Log in</button>
-				<button type="submit" id="btn_sub">Register</button>
 			</div>
+			<br>
+			<a href="/home/register" class="myform">Have not registered?Click to register.</a>
 		</div>
 	</div>
 </div>
@@ -42,7 +43,6 @@
 						$("#msg_danger").text(data["data"]);
 						$("#msg_danger").show();
 					}
-					
 				}
 			})
 			

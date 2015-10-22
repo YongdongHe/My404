@@ -23,9 +23,11 @@ class LoginHandler(tornado.web.RequestHandler):
         data={}
         try:
             helper = LoginHelper(self.db,email,psd)
-            if helper.Check():
+            correct_user = helper.Check()
+            if  correct_user != None:
             	data["status"] = 200
                 data["data"] = "Login Success"
+                self.set_secure_cookie("session",str(correct_user.user_name))
                 self.write(data)
         except LoginError, e:            
             data["status"] = e.getErrorCode()
@@ -51,10 +53,10 @@ class LoginHelper(object):
         if user==None:
             raise LoginError("Unexisted Email Address",404)
         elif user.user_psd == self.psd: 
-            return True
+            return user
         else:
         	raise LoginError("Wrong password for this email",403)
-        return False
+        return None
 
 
 

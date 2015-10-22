@@ -81,6 +81,7 @@
 	float: none;
 	margin-top: 100px;
 	margin-bottom: 100px;
+	text-align: center;
 }
 .myform h3{
 	margin-top: 10px;
@@ -92,5 +93,16 @@
 .myform span{
 	font-size: 24px;
 	font-weight: bold;
+	color: #63C6AE;
+}
+
+a.myform{
+	font-size: 14px;
+	font-family: inherit;
+	padding-top: 10px;
+	color: #737C85;
+
+}
+a.myform:hover{
 	color: #63C6AE;
 }

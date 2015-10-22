@@ -25,6 +25,9 @@ import tornado.web
 from sqlalchemy.orm import scoped_session, sessionmaker
 from mod.databases.db import engine
 from mod.testapi.handler import DbHandler
+from mod.RootHandler.RootHandler import HomePageHandler
+from mod.RootHandler.RootHandler import IndexHandler
+from mod.RootHandler.RootHandler import IndexPageHandler
 from mod.ArticleHandler.ArticleHandler import ArticleHandler
 from mod.UserhomeHandler.UserhomeHandler import UserhomeHandler
 from mod.Auth.RegisterHandler import RegisterHandler
@@ -48,21 +51,6 @@ define("port", default=3000, help="run on the given port", type=int)
 #                                               expire_on_commit=False))
 
 
-class IndexHandler(tornado.web.RequestHandler):
-    def get(self):
-        self.render('home.html')
-
-
-class IndexPageHandler(tornado.web.RequestHandler):
-    def get(self):
-        self.render('homepage/index.html',register=True)
-
-class HomePageHandler(tornado.web.RequestHandler):
-    def get(self,args):
-        print "In home handler:"+args[0::]
-        self.render('homepage/%s.html'%(args[0::]),register=True)
-
-
 class Application(tornado.web.Application):
 
     def __init__(self):
@@ -79,7 +67,8 @@ class Application(tornado.web.Application):
         settings = dict(
             debug=True,
             static_path=os.path.join(os.path.dirname(__file__),"static"),
-            template_path=os.path.join(os.path.dirname(__file__), "templates")
+            template_path=os.path.join(os.path.dirname(__file__), "templates"),
+            cookie_secret="365B3932BBBA6182B2D899B494468874"
         )
         tornado.web.Application.__init__(self, handlers, **settings)
         self.db = scoped_session(sessionmaker(bind=engine,

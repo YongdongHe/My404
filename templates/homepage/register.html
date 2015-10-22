@@ -15,13 +15,18 @@
 				<div class="alert alert-danger" role="alert" id="msg_danger">error</div>
 				<div class="alert alert-success" role="alert" id="msg_success">success</div>
 				<button type="submit" id="btn_reg">Register</button>
-				<button type="log">Log in</button>
 			</div>
+			<br>
+			<a href="/home/login" class="myform">Have registered?Click to log in.</a>
 		</div>
 	</div>
 </div>
 <script type="text/javascript">
+	function toLoginPage(){
+			window.location.href="/home/login";
+		}
 	$(document).ready(function(){
+
 		$("#msg_danger").hide();
 		$("#msg_success").hide();
 		$("#btn_reg").click(function(){
@@ -38,7 +43,8 @@
 					if(data["status"]==200){
 						$("#msg_danger").hide();
 						$("#msg_success").hide();
-						$("#msg_success").text(data["data"]);
+						$("#msg_success").text("Register successfully!turn to Login page after 2 second.");
+						setTimeout("toLoginPage()",2000);
 						$("#msg_success").show();
 					}else{
 						$("#msg_danger").hide();
@@ -52,6 +58,8 @@
 			
 			
 		});
+
+		
 	});
 </script>
 {% end %}
