@@ -28,7 +28,10 @@ class RegisterHandler(tornado.web.RequestHandler):
         try:
             helper = RegisterHelper(self.db,email,name,psd,confpsd)
             if helper.CheckEmail() and helper.CheckName() and helper.CheckPsd():
-                new_user = User(user_email = email,user_name = name,user_psd = psd)
+                new_user = User(
+                    user_email = email,
+                    user_name = name,
+                    user_psd = psd)
                 self.db.add(new_user)
                 self.db.commit()
                 #check :success or not

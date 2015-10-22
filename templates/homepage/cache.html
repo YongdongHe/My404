@@ -19,6 +19,7 @@
 	<!-- //for-mobile-apps -->
 	<!-- js -->
 		<script type="text/javascript" src="{{static_url("js/jquery.min.js")}}"></script>
+		<script type="text/javascript" src="{{static_url("js/bootstrap.js")}}"></script>
 	<!-- js -->
 	<!-- start-smooth-scrolling -->
 		<script type="text/javascript" src="{{static_url("js/move-top.js")}}"></script>
@@ -50,13 +51,16 @@
 					<li><a href="/home/about">About</a></li>	
 					<li><a href="/home/single">Blog</a></li>
 					<li><a href="/home/contact">Contact</a></li>
-					{% if register!=True %}
+					{% if correct_user==None %}
 					<li><a href="/home/login">Login/Register</a></li>
 					{% else %}
-					<li><a href="/home/login">{{session}}</a></li>
+					<li style="float: right;"><a href="/home/userhome">{{correct_user.user_name}},Logout</a></li>					
 					{% end %}
-				
+					<!-- Single button -->
 				</ul>
+
+ 				<!-- Split button -->
+				
 				<!-- script for menu -->
 					<script> 
 						$( "span.menu" ).click(function() {

@@ -4,6 +4,8 @@ import tornado.httpserver
 import tornado.ioloop
 import tornado.options
 import tornado.web
+from mod.databases.tables import Session
+from mod.databases.tables import User
 
 class IndexHandler(tornado.web.RequestHandler):
     def get(self):
@@ -13,7 +15,7 @@ class IndexHandler(tornado.web.RequestHandler):
 class IndexPageHandler(tornado.web.RequestHandler):
     def get(self):
     	user_session = str(self.get_secure_cookie("session"))
-        self.render('homepage/index.html',register=True,session=user_session)
+        self.render('homepage/index.html',correct_user=None)
 
 class HomePageHandler(tornado.web.RequestHandler):
     @property
@@ -23,18 +25,37 @@ class HomePageHandler(tornado.web.RequestHandler):
     def get(self,args):
         askurl = args[0::]
         print "In home handler:"+askurl
-        user_session = str(self.get_secure_cookie("session"))
+        correct_user = self.checkSession()
         if askurl == "login":
             ####login
-            if user_session == None:
-                self.render('homepage/login.html',register=True,session=user_session)
+            if correct_user == None:
+                self.render('homepage/login.html',
+                    correct_user=correct_user)
             else:
-                self.render('homepage/login.html',register=True,session=user_session)
+                print correct_user.user_id
+                self.render('homepage/index.html',
+                    correct_user=correct_user)
         elif askurl == "index":
-            self.render('homepage/index.html',register=True,session=user_session)
+            self.render('homepage/index.html',
+                correct_user=correct_user)
         else:
-            self.render('homepage/%s.html'%(askurl),register=True,session=user_session)
-
-
-
-
+            self.render('homepage/%s.html'%(askurl),
+                correct_user=correct_user)
+    
+    def checkSession(self):
+        try:
+            session = str(self.get_secure_cookie("session"))
+            user_id = int(self.get_secure_cookie("userid"))
+            print session
+            print user_id
+            correct_session = self.db.query(Session).filter(Session.session_value == session).first()
+            self.db.commit()
+            if (correct_session != None) and (correct_session.user_id == user_id):
+                correct_user = self.db.query(User).filter(User.user_id == user_id).first()
+                print correct_user.user_id
+                return correct_user
+            else:
+                return None
+        except Exception, e:
+            print 'Exception e in mod.RootHandler.checkSession:%s'%(str(e))
+            return None

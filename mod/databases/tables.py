@@ -19,6 +19,14 @@ class User(Base):
 	user_name = Column(String)
 	user_psd = Column(String)
 
+class Session(Base):
+	__tablename__ = 'sessions'
+	session_id = Column(Integer,primary_key=True)
+	session_value = Column(String)
+	user_id = Column(Integer)
+
+		
+
 	
 
 	
