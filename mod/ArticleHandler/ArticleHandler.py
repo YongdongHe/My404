@@ -12,6 +12,14 @@ class ArticleHandler(tornado.web.RequestHandler):
         return self.application.db
 
     def get(self):
+        sessionhelper = SessionHelper(self,self.db)
+        article_id = self.get_argument("article_id")
+        article = self.db.query(Article).filter(Article.article_id == article_id).first()
+        self.render("article.html",
+            article_title=article.content,
+            user_name=article.user,
+            article_content=article.content,
+            correct_user=sessionhelper.checkSession())
         pass
 
     def post(self):

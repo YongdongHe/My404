@@ -1,15 +1,46 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>{{article_name}}</title>
-	<link rel="stylesheet" href="">
-</head>
-<body>
-	{{article_content}}
-	{% for i in arrs %}
-	<li>{{i}}</li>
-	{% end %}
-</body>
-</html>
+{% extends "homepage\cache.html" %}
+{% block title %}{{article_title}}{% end %}
+{% block content %}
+<!-- single -->
+<div class="blog-page">
+	<div class="container">
+		
+		<div class="blog-grids">
+			<div class="blog-content">
+				<div class="blog-post">
+					<h4>{{article_title}}</h4>
+					<div class="post-details">
+						<p>Posted By <a href="#">{{user_name}}</a> &nbsp;&nbsp; On 15 jan, 2015 &nbsp;&nbsp; <a href="#">Comments</a>  (10)</p>
+					</div>
+					<p>{{article_content}}</p>
+				</div>
+			</div>
+			<!-- <div class="blog-sidebar">
+				<h4>Categories</h4>
+				<ul class="category">
+					<li><a href="#">Cras ut ultrices</a></li>
+					<li><a href="#">Nullam id enim</a></li>
+					<li><a href="#">scelerisque enim</a></li>
+					<li><a href="#">Ut tincidunt</a></li>
+					<li><a href="#">Aliquam mauris nunc,</a></li>
+					<li><a href="#">convallis ex urna, ege</a></li>
+					<li><a href="#"> et commodo</a></li>
+				</ul>
+			</div> -->
+			<div class="clearfix"></div>
+		</div>
+		<div class="leave-form">
+			<h3>LEAVE YOUR OPINION</h3>
+			<form>
+<!-- 				<input type="text" placeholder="Name" required="">
+				<input type="text" placeholder="Email" required="">
+				<input type="text" placeholder="Subject" required> -->
+				<textarea placeholder="Message" required=""></textarea>	
+				<input type="submit" value="SEND">
+			</form>
+		</div>
+	</div>
+</div>
+<!-- //single -->
+
+{% end %}
