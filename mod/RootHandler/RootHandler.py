@@ -6,6 +6,7 @@ import tornado.options
 import tornado.web
 from mod.databases.tables import Session
 from mod.databases.tables import User
+from mod.Auth.SessionHelper import SessionHelper
 
 class IndexHandler(tornado.web.RequestHandler):
     def get(self):
@@ -25,7 +26,9 @@ class HomePageHandler(tornado.web.RequestHandler):
     def get(self,args):
         askurl = args[0::]
         print "In home handler:"+askurl
-        correct_user = self.checkSession()
+        session_helper = SessionHelper(self,self.db)
+        correct_user = session_helper.checkSession()
+        # correct_user = self.checkSession()
         if askurl == "login":
             ####login
             if correct_user == None:
@@ -46,13 +49,13 @@ class HomePageHandler(tornado.web.RequestHandler):
         try:
             session = str(self.get_secure_cookie("session"))
             user_id = int(self.get_secure_cookie("userid"))
-            print session
-            print user_id
+            # print session
+            # print user_id
             correct_session = self.db.query(Session).filter(Session.session_value == session).first()
             self.db.commit()
             if (correct_session != None) and (correct_session.user_id == user_id):
                 correct_user = self.db.query(User).filter(User.user_id == user_id).first()
-                print correct_user.user_id
+                # print correct_user.user_id
                 return correct_user
             else:
                 return None
