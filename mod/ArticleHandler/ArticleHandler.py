@@ -1,3 +1,4 @@
+#coding=utf-8
 from tornado.httpclient import HTTPRequest, AsyncHTTPClient
 from mod.databases.tables import Article
 from mod.Auth.SessionHelper import SessionHelper
@@ -30,6 +31,7 @@ class ArticleHandler(tornado.web.RequestHandler):
         if correct_user!=None:
             try:
                 article_content = self.get_argument("article_content")
+                print article_content
                 article_title = self.get_argument("article_title")
                 username = correct_user.user_name
                 posttime = time.strftime('%Y-%m-%d %X',time.localtime(time.time()))
