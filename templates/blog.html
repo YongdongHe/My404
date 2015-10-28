@@ -1,1 +1,20 @@
 {% extends "homepage/cache.html" %}
+{% block title %}blog{% end %}
+
+{% block content %}
+<!-- business -->
+<div class="business">
+	<div class="container">
+		{% for article in articles %}
+			<div class="col-md-8 business-right">
+				<h3>{{article.title}}</h3>
+				<p>{{article.content}}</p>
+				<a href="/home/single">READ MORE</a>
+			</div>
+			<div class="clearfix"></div>
+		{% end %}
+	</div>
+</div>
+
+
+{% end %}

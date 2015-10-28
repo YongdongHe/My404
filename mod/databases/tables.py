@@ -7,6 +7,7 @@ from db import engine,Base
 class Article(Base):
 	__tablename__ = 'articles'
 	article_id = Column(Integer,primary_key = True)
+	user_id = Column(Integer)
 	user = Column(VARCHAR(20))
 	title = Column(VARCHAR(40))
 	time = Column(VARCHAR(20))
