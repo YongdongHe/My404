@@ -33,6 +33,7 @@
 	background:#63c6ae;
 	margin-left: auto;
 	margin-right: auto;
+	margin-top: 10px;
 }
 
 .myform button:hover {
@@ -105,4 +106,10 @@ a.myform{
 }
 a.myform:hover{
 	color: #63C6AE;
+}
+
+.myeditor{
+	height: 300px;
+	margin-top: 10px;
+	margin-bottom: 10px;
 }

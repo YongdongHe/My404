@@ -2,16 +2,69 @@
 {% block title %}随笔{% end %}
 {% block content %}
 <!-- single -->
+<script type="text/javascript" src="{{static_url("js/wangEditor-1.3.12.min.js")}}"></script>
+<link rel="stylesheet" type="text/css" href="{{static_url("css/wangEditor-1.3.12.css")}}">
 <div class="blog-page">
 	<div class="container">
-		<div class="leave-form">
-			<h3>New </h3>
-				<input type="text" placeholder="Title" required="">
-				<textarea placeholder="Message" required=""></textarea>	
-				<input type="submit" value="SEND">
+		<div class="myform">
+			<h3>New Article</h3>
+			<input id="title"type="text" placeholder="Title" required="">
 		</div>
+		<textarea class="myeditor" id="editor" placeholder="Message" required=""></textarea>
+		<div class="myform">
+			<button id="btn_post" type="submit">Publish</button>
+		</div>	
 	</div>
 </div>
-<!-- //single -->
 
+<div class="modal fade" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">新文章</h4>
+      </div>
+      <div class="modal-body">
+        <p>发布成功</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+<!--         <button type="button" class="btn btn-primary">Save changes</button> -->
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<script type="text/javascript">
+	$(function(){
+    $('#editor').wangEditor();
+});
+	$(document).ready(function() {
+		// document ready
+		$("#btn_post").click(function(event) {
+			/* Act on the event */
+			var title = $("#title").val();
+			var content = $("#editor").val();
+			console.log(title);
+			console.log(content);
+			$.ajax({
+				url: '/article',
+				type: 'POST',
+				dataType: 'json',
+				data: {article_title: title,article_content:content},
+			})
+			.done(function() {
+				console.log("success");
+				$('#myModal').modal('show')//弹出模态框
+
+			})
+			.fail(function() {
+				console.log("error");
+			})
+			.always(function() {
+				console.log("complete");
+			});
+			
+		});
+	})
+</script>
 {% end %}

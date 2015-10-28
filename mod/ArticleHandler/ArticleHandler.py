@@ -26,17 +26,28 @@ class ArticleHandler(tornado.web.RequestHandler):
     def post(self):
         sessionhelper = SessionHelper(self,self.db)
         correct_user = sessionhelper.checkSession()
+        response = {}
         if correct_user!=None:
-            article_content = self.get_argument("article_content")
-            article_title = self.get_argument("article_title")
-            username = correct_user.user_name
-            posttime = time.strftime('%Y-%m-%d %X',time.localtime(time.time()))
-            article = Article(title = article_title,
-                content = article_content,
-                user = username,
-                time = posttime)
-            self.db.add(article)
-            self.db.commit()
+            try:
+                article_content = self.get_argument("article_content")
+                article_title = self.get_argument("article_title")
+                username = correct_user.user_name
+                posttime = time.strftime('%Y-%m-%d %X',time.localtime(time.time()))
+                article = Article(user_id = correct_user.user_id,
+                    title = article_title,
+                    content = article_content,
+                    user = username,
+                    time = posttime)
+                self.db.add(article)
+                self.db.commit()
+                response["status"]=200
+                response["data"]='success'
+                self.write(response)
+            except Exception, e:
+                response["status"]=400
+                response["data"]=str(e)
+                self.write(response)
+                raise e
         else:
             self.render("homepage/login.html",correct_user=None)
-    	pass
+    	
