@@ -4,6 +4,7 @@ from mod.Auth.SessionHelper import SessionHelper
 import tornado.web
 import tornado.gen
 import urllib
+import time
 
 class ArticleHandler(tornado.web.RequestHandler):
 
@@ -23,4 +24,19 @@ class ArticleHandler(tornado.web.RequestHandler):
         pass
 
     def post(self):
+        sessionhelper = SessionHelper(self,self.db)
+        correct_user = sessionhelper.checkSession()
+        if correct_user!=None:
+            article_content = self.get_argument("article_content")
+            article_title = self.get_argument("article_title")
+            username = correct_user.user_name
+            posttime = time.strftime('%Y-%m-%d %X',time.localtime(time.time()))
+            article = Article(title = article_title,
+                content = article_content,
+                user = username,
+                time = posttime)
+            self.db.add(article)
+            self.db.commit()
+        else:
+            self.render("homepage/login.html",correct_user=None)
     	pass

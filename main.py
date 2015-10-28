@@ -29,6 +29,7 @@ from mod.RootHandler.RootHandler import HomePageHandler
 from mod.RootHandler.RootHandler import IndexHandler
 from mod.RootHandler.RootHandler import IndexPageHandler
 from mod.ArticleHandler.ArticleHandler import ArticleHandler
+from mod.ArticleHandler.ArticleWriteHandler import ArticleWriteHandler
 from mod.BlogHandler.BlogHandler import BlogHandler
 from mod.Auth.RegisterHandler import RegisterHandler
 from mod.Auth.LoginHandler import LoginHandler
@@ -64,6 +65,7 @@ class Application(tornado.web.Application):
         (r"/logout",LogoutHandler),
         (r"/db",DbHandler),
         (r"/article",ArticleHandler),
+        (r"/articlewrite",ArticleWriteHandler),
         (r"/blog",BlogHandler)
         ]
         settings = dict(
