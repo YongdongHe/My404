@@ -15,6 +15,12 @@ class LogoutHandler(tornado.web.RequestHandler):
 
     def get(self):
         try:
+            session = str(self.get_secure_cookie("session"))
+            if session!= None:
+                layout_user = self.db.query(Session).filter(Session.session_value == session).first()
+                self.db.delete(layout_user)
+                self.db.commit()
+                pass
             self.clear_cookie("session")
             self.clear_cookie("userid")
             self.render("homepage/index.html",correct_user = None)
