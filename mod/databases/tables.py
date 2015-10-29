@@ -19,6 +19,7 @@ class User(Base):
 	user_email = Column(String)
 	user_name = Column(String)
 	user_psd = Column(String)
+	register_time = Column(VARCHAR)
 
 class Session(Base):
 	__tablename__ = 'sessions'

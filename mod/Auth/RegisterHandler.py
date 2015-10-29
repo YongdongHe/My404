@@ -6,7 +6,7 @@ import re
 import tornado.web
 import tornado.gen
 import urllib
-
+import time
 
 class RegisterHandler(tornado.web.RequestHandler):
 
@@ -29,10 +29,12 @@ class RegisterHandler(tornado.web.RequestHandler):
         try:
             helper = RegisterHelper(self.db,email,name,psd,confpsd)
             if helper.CheckEmail() and helper.CheckName() and helper.CheckPsd():
+                register_time = time.strftime("%Y-%m-%d %X",time.localtime(time.time()))
                 new_user = User(
                     user_email = email,
                     user_name = name,
-                    user_psd = psd)
+                    user_psd = psd,
+                    register_time = register_time)
                 self.db.add(new_user)
                 self.db.commit()
                 #check :success or not
