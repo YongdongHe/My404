@@ -45,18 +45,21 @@
 	<div class="header-right">
 		<span class="menu"><img src="{{static_url("img/home/menu.png")}}" alt=""/></span>
 				<ul class="nav1">
-					<li><a class="active" href="/404">DESIGN FOLIO</a></li>
-					<li><a href="/home/services">Services</a></li>
-					<li><a href="/home/business">Our Project</a></li>
-					<li><a href="/home/about">About</a></li>	
-					<li><a href="/home/single">Blog</a></li>
-					<li><a href="/home/contact">Contact</a></li>
-					<li><a href="/homt/rank">Frinends</a></li>
+<!-- 					<li><a class="active" href="/404">DESIGN FOLIO</a></li> -->
+<!-- 					<li><a href="/home/services">Services</a></li> -->
+<!-- 					<li><a href="/home/about">About</a></li> -->	
+					<li><a href="/home/single">博客</a></li>
+					<li><a href="/home/contact">联系我们</a></li>
+					<li><a href="/home/aboutus">关于我们</a></li>
+					<li><a href="/home/rank">俱乐部老友录</a></li>
 					{% if correct_user==None %}
-					<li><a href="/home/login">Login/Register</a></li>
+					<li style="float: right;"><a href="/home/login">登录/注册</a></li>
 					{% else %}
-					<li style="float: right;"><a href="/logout">{{correct_user.user_name}},Logout</a></li>					
-					{% end %}
+					<li style="float: right;"><a href="/logout">退出</a></li>
+					<li style="float: right;"><a href="/blog?id={{correct_user.user_id}}">你好，{{correct_user.user_name}}</a></li>	
+					<li style="float: right;"><a href="/articlewrite"><i class="fa fa-pencil">写文章</i>
+</a></li>				
+					{% end %}		
 					<!-- Single button -->
 				</ul>
 
