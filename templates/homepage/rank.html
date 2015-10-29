@@ -1,0 +1,8 @@
+{% extends "cache.html" %}
+{% block title %}404老油条排行榜{% end %}
+{% block content %}
+{% for user in users%}
+<p>{{user.user_name}}</p>
+<a href="/blog?id={{user.user_id}}" title="">{{user.user_name}}</a>
+{% end %}
+{% end %}

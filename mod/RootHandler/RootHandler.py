@@ -41,6 +41,8 @@ class HomePageHandler(tornado.web.RequestHandler):
         elif askurl == "index":
             self.render('homepage/index.html',
                 correct_user=correct_user)
+        elif askurl == "rank":
+            self.RankPageHandler(correct_user)
         else:
             self.render('homepage/%s.html'%(askurl),
                 correct_user=correct_user)
@@ -62,3 +64,8 @@ class HomePageHandler(tornado.web.RequestHandler):
         except Exception, e:
             print 'Exception e in mod.RootHandler.checkSession:%s'%(str(e))
             return None
+
+    def RankPageHandler(self,user):
+        allusers = self.db.query(User).all()
+        self.render('homepage/rank.html',
+                correct_user=user,users=allusers)
