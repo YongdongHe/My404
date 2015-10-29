@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from tornado.httpclient import HTTPRequest, AsyncHTTPClient
 from mod.databases.tables import User
 # from mod.Debug.Col import Color
@@ -56,7 +57,7 @@ class RegisterHelper(object):
         super(RegisterHelper, self).__init__()
         self.db = db
         self.email = str(email)
-        self.name = str(name)
+        self.name = name
         self.psd = str(psd)
         self.confpsd = str(confpsd)
 

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from tornado.httpclient import HTTPRequest, AsyncHTTPClient
 from mod.databases.tables import Session
 from mod.databases.tables import User

@@ -2,6 +2,7 @@ from tornado.httpclient import HTTPRequest, AsyncHTTPClient
 from mod.databases.tables import User
 from mod.databases.tables import Session
 import uuid
+import time
 # from mod.Debug.Col import Color
 import re
 import tornado.web
@@ -30,7 +31,8 @@ class LoginHandler(tornado.web.RequestHandler):
             	data["status"] = 200
                 data["data"] = "Login Success"
                 uuid_session = str(uuid.uuid4())
-                data_session = Session(session_value = uuid_session,user_id = correct_user.user_id)
+                create_time = time.strftime('%Y-%m-%d %X',time.localtime(time.time()))
+                data_session = Session(session_value = uuid_session,user_id = correct_user.user_id,create_time=create_time)
                 self.db.add(data_session)
                 self.db.commit()
                 self.set_secure_cookie("session",uuid_session)

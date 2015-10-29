@@ -24,6 +24,7 @@ class Session(Base):
 	__tablename__ = 'sessions'
 	session_id = Column(Integer,primary_key=True)
 	session_value = Column(String)
+	create_time = Column(VARCHAR)
 	user_id = Column(Integer)
 
 		
