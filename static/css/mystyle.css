@@ -113,3 +113,50 @@ a.myform:hover{
 	margin-top: 10px;
 	margin-bottom: 10px;
 }
+
+.mylaptop img{
+	width: 500px;
+	height: 500px;
+	border-radius: 50%;
+
+}
+
+.mylaptop p{
+	font-family: inherit;
+	font-size: 30px;
+	color: #ffffff;
+	margin-top: 40px;
+}
+
+.second-slider {
+    padding: 80px 0px 100px;
+    background: rgb(36, 42, 44) none repeat scroll 0% 0%;
+    border-bottom: 10px solid rgb(36, 42, 44);
+}
+
+.blog{
+padding:100px 0;
+}
+
+.blog-article h3{
+color: #63c6ae;
+margin: 0;
+font-size: 24px;
+font-weight: bold;
+line-height:1.8em;
+}
+.blog-article p{
+color: #737c85;
+margin: 15px 0 40px 0;
+font-size: 14px;
+line-height:1.8em;
+}
+.blog-article a{
+color: #63c6ae;
+font-size: 14px;
+text-decoration:none;
+padding:1px 4px 1px 4px;
+}
+.blog-article a:hover{
+background:#455357;
+}

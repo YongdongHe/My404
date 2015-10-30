@@ -177,34 +177,54 @@ border:9px solid #63c6ae;
 .bottom-pos.a{
   width: 91px;
   height: 88px;
-  background: url(../img/home/iconpos.png) no-repeat 0px 0px;
+  background: url(../img/home/He.jpg) no-repeat 0px 0px;
+  background-position:center;
+  border-radius: 50%;
+  border:5px solid #ffffff;
 }
 .bottom-pos.b{
   width: 91px;
   height: 88px;
-  background: url(../img/home/iconpos.png) no-repeat -299px 0px;
+  background: url(../img/home/j.jpg) no-repeat -299px 0px;
+  background-position:center;
+  border-radius: 50%;
+  border:5px solid #ffffff;
 }
 .bottom-pos.c{
   width: 91px;
   height: 88px;
-  background: url(../img/home/iconposhover.png) no-repeat -598px 0px;
+  background: url(../img/home/P.png) no-repeat -598px 0px;
+  background-position:center;
+  border-radius: 50%;
+  border:5px solid #ffffff;
 }
 .bottom-pos.d{
   width: 91px;
   height: 88px;
-  background: url(../img/home/iconpos.png) no-repeat -899px 0px;
+  background: url(../img/home/Z.jpg) no-repeat -899px 0px;
+  background-position:center;
+  border-radius: 50%;
+  border:5px solid #ffffff;
 }
 .bottom-grid:hover div.bottom-pos.a{
- background: url(../img/home/iconposhover.png) no-repeat 0px 0px;
+ background: url(../img/home/He.jpg) no-repeat 0px 0px;
+ background-position:center;
+ border:5px solid #63c6ae;
 }
 .bottom-grid:hover div.bottom-pos.b{
- background: url(../img/home/iconposhover.png) no-repeat -299px 0px;
+ background: url(../img/home/j.jpg) no-repeat -299px 0px;
+ background-position:center;
+ border:5px solid #63c6ae;
 }
 .bottom-grid:hover div.bottom-pos.c{
- background: url(../img/home/iconpos.png) no-repeat -598px 0px;
+ background: url(../img/home/P.png) no-repeat -598px 0px;
+ background-position:center;
+ border:5px solid #63c6ae;
 }
 .bottom-grid:hover div.bottom-pos.d{
- background: url(../img/home/iconposhover.png) no-repeat -899px 0px;
+ background: url(../img/home/Z.jpg) no-repeat -899px 0px;
+ background-position:center;
+ border:5px solid #63c6ae;
 }
 .slider-bottom{
 background:#f8f8f8;

@@ -1,12 +1,13 @@
-{% extends "homepage/cache.html" %}
+{% extends "homepage/header.html" %}
 {% block title %}blog{% end %}
 
 {% block content %}
+
 <!-- business -->
-<div class="business">
+<div class="blog">
 	<div class="container">
 		{% for article in articles %}
-			<div class="col-md-8 business-right">
+			<div class="col-md-8 blog-article">
 				<h3>{{article.title}}</h3>
 				<p>{{article.content}}</p>
 				<a href="/article?article_id={{article.article_id}}">READ MORE</a>
@@ -15,6 +16,4 @@
 		{% end %}
 	</div>
 </div>
-
-
 {% end %}
