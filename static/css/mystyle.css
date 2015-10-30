@@ -135,6 +135,9 @@ a.myform:hover{
     border-bottom: 10px solid rgb(36, 42, 44);
 }
 
+
+/*blog页面*/
+
 .blog {
     padding: 100px 0;
 }
@@ -216,4 +219,15 @@ div.blog-article:hover {
 	border: 10px #63c6ae solid;
     margin-top: 14px;
     margin-bottom: 10px;
+}
+
+
+/*rank页面*/
+div.rank-list{
+	margin-top: 50px;
+}
+.rank-item img.userlogo{
+	width: 140px;
+	height: 140px;
+	border-radius: 50%;
 }

@@ -7,6 +7,7 @@ import tornado.web
 from mod.databases.tables import Session
 from mod.databases.tables import User
 from mod.Auth.SessionHelper import SessionHelper
+from mod.BlogHandler.BlogHandler import GravatarHelper
 
 class IndexHandler(tornado.web.RequestHandler):
     def get(self):
@@ -67,5 +68,8 @@ class HomePageHandler(tornado.web.RequestHandler):
 
     def RankPageHandler(self,user):
         allusers = self.db.query(User).all()
+        urls={}
+        for user in allusers:
+            urls[user.user_id]=GravatarHelper(user.user_email).getUrl()
         self.render('homepage/rank.html',
-                correct_user=user,users=allusers)
+                correct_user=user,users=allusers,urls=urls)
