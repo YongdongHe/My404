@@ -18,8 +18,13 @@
 				<p class="article_time"><i class="fa fa-bookmark"></i>{{article.time}}</p>
 				<a href="/article?article_id={{article.article_id}}" class="article_title">{{article.title}}</a>
 				{% module ArticleContent(article.content) %}
+				<br>
+				<div class="row">
+					<div class="col-md-12">
+						<a class="article-link" href="/article?article_id={{article.article_id}}">Readmore</a>
 				<p class="aritcle-comment"><i class="fa fa-comment"></i></p>
-				<a class="article-link" href="/article?article_id={{article.article_id}}">Readmore</a>
+					</div>
+				</div>
 			</div>
 			<div class="clearfix"></div>
 		{% end %}

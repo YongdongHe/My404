@@ -166,13 +166,11 @@ div.blog-user-info{
 
 .blog-article p{
     color: #737c85;
-    margin-left: 15px;
     font-size: 14px;
     line-height: 1.8em;
 }
 
 .blog-article a.article_title{
-	margin-left: 15px;
 	font-size: 19px;
 	font-weight: bold;
     color: #000000;
@@ -201,7 +199,6 @@ div.blog-user-info{
     font-size: 14px;
     text-decoration: none;
     padding: 0px 4px 0px 4px;
-    margin-left: 11px;
 }
 
 .blog-article a.article-link:hover{
@@ -223,11 +220,17 @@ div.blog-article:hover {
 
 
 /*rank页面*/
+
 div.rank-list{
-	margin-top: 50px;
+	margin-top: 15px;
+	margin-bottom: 15px;
 }
+
 .rank-item img.userlogo{
-	width: 140px;
-	height: 140px;
+	width: 100px;
+	height: 100px;
 	border-radius: 50%;
+}
+.rank-item p.user-name{
+	font-size: 16px;
 }

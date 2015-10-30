@@ -10,7 +10,7 @@
 				<div class="blog-post">
 					<h4>{{article_title}}</h4>
 					<div class="post-details">
-						<p>Posted By <a href="#">{{user_name}}</a> &nbsp;&nbsp; On 15 jan, 2015 &nbsp;&nbsp; <a href="#">Comments</a>  (10)</p>
+						<p>Posted By <a href="/blog?id={{user_id}}">{{user_name}}</a> &nbsp;&nbsp; On 15 jan, 2015 &nbsp;&nbsp; <a href="#comlist">Comments</a>  (10)</p>
 					</div>
 					{% module ArticleContent(article_content) %}
 				</div>
@@ -29,6 +29,23 @@
 			</div> -->
 			<div class="clearfix"></div>
 		</div>
+		<div class="leave-form">
+			<h3 name="comlist">评论</h3>
+		</div>
+		{% for comment in comments%}
+		<div class="row rank-list">
+		    <div class="col-md-2 ">
+		        <div class="rank-item">
+		            <a href="/blog?id={{comment.commenter_id}}"><img class="userlogo" src="{{urls[comment.commenter_id]}}" alt=""></a>
+		        </div>
+		    </div>
+		    <div class="col-md-4">
+		    	<div class="rank-item">
+		            <p>{{comment.comment_content}}</p>
+		        </div>
+		    </div>
+		</div>
+    	{% end %}
 		<div class="leave-form">
 			<h3>LEAVE YOUR OPINION</h3>
 			<form>

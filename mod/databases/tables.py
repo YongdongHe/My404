@@ -29,7 +29,12 @@ class Session(Base):
 	user_id = Column(Integer)
 
 		
-
+class Comment(Base):
+	__tablename__ = 'comments'
+	comment_id = Column(Integer,primary_key=True)
+	article_id = Column(Integer)
+	comment_content = Column(String)
+	commenter_id = Column(Integer)
 	
 
 	

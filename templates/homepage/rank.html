@@ -2,15 +2,20 @@
 {% block title %}404老油条排行榜{% end %}
 {% block content %}
 <div class="container">
-	<h1 style="text-align: center;margin-top: 50px;">俱乐部老友榜</h1>
-    <div class="col-md-12 rank-list">
-    	{% for user in users%}
-			<div class="rank-item">
-			    <a href="/blog?id={{user.user_id}}"><img class="userlogo" src="{{urls[user.user_id]}}" alt=""></a>
-			    <p>{{user.user_name}}</p>
-			</div>
-        {% end %}
-    </div>
+	<h1 style="text-align: center;margin-top: 50px;margin-bottom: 50px;">俱乐部老友榜</h1>
+	{% for user in users%}
+		<div class="row rank-list">
+		    <div class="col-md-2 ">
+		        <div class="rank-item">
+		            <a href="/blog?id={{user.user_id}}"><img class="userlogo" src="{{urls[user.user_id]}}" alt=""></a>
+		        </div>
+		    </div>
+		    <div class="col-md-4">
+		    	<div class="rank-item">
+		            <p class="user-name">{{user.user_name}}</p>
+		        </div>
+		    </div>
+		</div>
+    {% end %}
 </div>
-
 {% end %}

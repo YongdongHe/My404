@@ -21,7 +21,7 @@ class BlogHandler(tornado.web.RequestHandler):
                 correct_user=correct_user)
         else:
             articles = self.db.query(Article).filter(Article.user_id == blog_user_id).all()
-            gravatar_url =GravatarHelper(blog_user.user_email).getUrl()
+            gravatar_url =GravatarHelper(blog_user.user_email,240).getUrl()
             self.render("blog.html",
                 correct_user=correct_user,
                 articles=articles,
@@ -32,14 +32,15 @@ class BlogHandler(tornado.web.RequestHandler):
 
 class GravatarHelper(object):
     """docstring for GravatarHelper"""
-    def __init__(self, email):
+    def __init__(self, email,size):
         super(GravatarHelper, self).__init__()
         self.email = email
+        self.size = size
 
     def getUrl(self):
         default = "http://www.example.com/default.jpg"
-        size = 240
+        size = self.size
         gravatar_url = "http://secure.gravatar.com/avatar/" + hashlib.md5(self.email.lower()).hexdigest() + "?"
-        gravatar_url += urllib.urlencode({'d':default, 's':str(size)})
+        gravatar_url += urllib.urlencode({'d':"retro", 's':str(size)})
         return gravatar_url
         

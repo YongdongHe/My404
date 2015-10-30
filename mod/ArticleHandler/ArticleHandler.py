@@ -1,7 +1,10 @@
 #coding=utf-8
 from tornado.httpclient import HTTPRequest, AsyncHTTPClient
 from mod.databases.tables import Article
+from mod.databases.tables import Comment
+from mod.databases.tables import User
 from mod.Auth.SessionHelper import SessionHelper
+from mod.BlogHandler.BlogHandler import GravatarHelper
 import tornado.web
 import tornado.gen
 import urllib
@@ -17,10 +20,18 @@ class ArticleHandler(tornado.web.RequestHandler):
         sessionhelper = SessionHelper(self,self.db)
         article_id = self.get_argument("article_id")
         article = self.db.query(Article).filter(Article.article_id == article_id).first()
+        comments = self.db.query(Comment).filter(Comment.article_id == article_id).order_by(Comment.comment_id).all()
+        urls={}
+        for comment in comments:
+            commenter = self.db.query(User).filter(User.user_id == comment.commenter_id).first()
+            urls[commenter.user_id]=GravatarHelper(commenter.user_email,240).getUrl()
         self.render("article.html",
-            article_title=article.title,
+            user_id=article.user_id,    
             user_name=article.user,
+            article_title=article.title,
             article_content=article.content,
+            comments=comments,
+            urls=urls,
             correct_user=sessionhelper.checkSession())
         pass
 
@@ -54,6 +65,11 @@ class ArticleHandler(tornado.web.RequestHandler):
             self.render("homepage/login.html",correct_user=None)
 
 
+
 class ArticleContentModule(tornado.web.UIModule):
     def render(self,article_content):
         return article_content
+
+class CommentItemModule(tornado.web.UIModule):
+    def render(self):
+        return 's'
