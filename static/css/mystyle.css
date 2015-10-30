@@ -126,6 +126,7 @@ a.myform:hover{
 	font-size: 30px;
 	color: #ffffff;
 	margin-top: 40px;
+	margin-bottom: 40px;
 }
 
 .second-slider {
@@ -134,29 +135,57 @@ a.myform:hover{
     border-bottom: 10px solid rgb(36, 42, 44);
 }
 
-.blog{
-padding:100px 0;
+.blog {
+    padding: 100px 0;
 }
 
-.blog-article h3{
-color: #63c6ae;
-margin: 0;
-font-size: 24px;
-font-weight: bold;
-line-height:1.8em;
+.blog-article h3 {
+    color: #63c6ae;
+    margin: 0;
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 1.8em;
 }
-.blog-article p{
-color: #737c85;
-margin: 15px 0 40px 0;
-font-size: 14px;
-line-height:1.8em;
+
+.blog-article p {
+    color: #737c85;
+    margin: 15px;
+    font-size: 14px;
+    line-height: 1.8em;
 }
-.blog-article a{
-color: #63c6ae;
-font-size: 14px;
-text-decoration:none;
-padding:1px 4px 1px 4px;
+
+.blog-article a {
+    color: #63c6ae;
+    font-size: 14px;
+    text-decoration: none;
+    padding: 1px 4px 1px 4px;
 }
-.blog-article a:hover{
-background:#455357;
+
+.blog-article a:hover {
+    background: #455357;
+}
+
+div.blog-article {
+	border-top: 2px #CACFFF solid;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+div.blog_user_info{
+	text-align: center;
+	margin-top: 30px;
+}
+
+.blog_user_info h1,h2,h3,h4,h5,h6{
+	text-align: center;
+}
+
+.blog_user_info h6.username{
+	color: #455357;
+}
+
+.blog_user_info img.userlogo{
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
 }
