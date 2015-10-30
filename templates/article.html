@@ -12,7 +12,7 @@
 					<div class="post-details">
 						<p>Posted By <a href="#">{{user_name}}</a> &nbsp;&nbsp; On 15 jan, 2015 &nbsp;&nbsp; <a href="#">Comments</a>  (10)</p>
 					</div>
-					<p>{{article_content}}</p>
+					{% module ArticleContent(article_content) %}
 				</div>
 			</div>
 			<!-- <div class="blog-sidebar">

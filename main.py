@@ -30,6 +30,7 @@ from mod.RootHandler.RootHandler import IndexHandler
 from mod.RootHandler.RootHandler import IndexPageHandler
 from mod.ArticleHandler.ArticleHandler import ArticleHandler
 from mod.ArticleHandler.ArticleWriteHandler import ArticleWriteHandler
+from mod.ArticleHandler.ArticleHandler import ArticleContentModule
 from mod.BlogHandler.BlogHandler import BlogHandler
 from mod.Auth.RegisterHandler import RegisterHandler
 from mod.Auth.LoginHandler import LoginHandler
@@ -68,11 +69,13 @@ class Application(tornado.web.Application):
         (r"/articlewrite",ArticleWriteHandler),
         (r"/blog",BlogHandler)
         ]
+        modules={'ArticleContent': ArticleContentModule}
         settings = dict(
             debug=True,
             static_path=os.path.join(os.path.dirname(__file__),"static"),
             template_path=os.path.join(os.path.dirname(__file__), "templates"),
-            cookie_secret="365B3932BBBA6182B2D899B494468874"
+            cookie_secret="365B3932BBBA6182B2D899B494468874",
+            ui_modules=modules
         )
         tornado.web.Application.__init__(self, handlers, **settings)
         self.db = scoped_session(sessionmaker(bind=engine,

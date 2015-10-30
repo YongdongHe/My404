@@ -5,9 +5,9 @@
 
 <!-- blog -->
 <div class="container">
-	<div class="clo-md-3 blog_user_info">
+	<div class="clo-md-3 blog-user-info">
 		<img class="userlogo" src="{{gravatar_url}}" alt="">
-		<h6 class="username">{{blog_user.user_name}}</h6>
+		<p class="username">{{blog_user.user_name}}</p>
 		<h6><i class="fa fa-envelope-o"></i>{{blog_user.user_email}}</h6>
 	</div>
 </div>
@@ -15,9 +15,11 @@
 	<div class="container">
 		{% for article in articles %}
 			<div class="col-md-12 blog-article">
-				<h3>{{article.title}}</h3>
-				<p>{{article.content}}</p>
-				<a href="/article?article_id={{article.article_id}}">READ MORE</a>
+				<p class="article_time"><i class="fa fa-bookmark"></i>{{article.time}}</p>
+				<a href="/article?article_id={{article.article_id}}" class="article_title">{{article.title}}</a>
+				{% module ArticleContent(article.content) %}
+				<p class="aritcle-comment"><i class="fa fa-comment"></i></p>
+				<a class="article-link" href="/article?article_id={{article.article_id}}">Readmore</a>
 			</div>
 			<div class="clearfix"></div>
 		{% end %}

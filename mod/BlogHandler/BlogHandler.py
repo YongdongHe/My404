@@ -23,8 +23,8 @@ class BlogHandler(tornado.web.RequestHandler):
             articles = self.db.query(Article).filter(Article.user_id == blog_user_id).all()
             email = blog_user.user_email
             default = "http://www.example.com/default.jpg"
-            size = 40
-            gravatar_url = "http://www.gravatar.com/avatar/" + hashlib.md5(email.lower()).hexdigest() + "?"
+            size = 240
+            gravatar_url = "http://secure.gravatar.com/avatar/" + hashlib.md5(email.lower()).hexdigest() + "?"
             gravatar_url += urllib.urlencode({'d':default, 's':str(size)})
             self.render("blog.html",
                 correct_user=correct_user,

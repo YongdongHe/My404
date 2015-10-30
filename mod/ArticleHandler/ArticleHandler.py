@@ -18,7 +18,7 @@ class ArticleHandler(tornado.web.RequestHandler):
         article_id = self.get_argument("article_id")
         article = self.db.query(Article).filter(Article.article_id == article_id).first()
         self.render("article.html",
-            article_title=article.content,
+            article_title=article.title,
             user_name=article.user,
             article_content=article.content,
             correct_user=sessionhelper.checkSession())
@@ -52,4 +52,8 @@ class ArticleHandler(tornado.web.RequestHandler):
                 raise e
         else:
             self.render("homepage/login.html",correct_user=None)
-    	
+
+
+class ArticleContentModule(tornado.web.UIModule):
+    def render(self,article_content):
+        return article_content
