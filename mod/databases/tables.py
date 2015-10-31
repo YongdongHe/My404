@@ -8,7 +8,7 @@ class Article(Base):
 	__tablename__ = 'articles'
 	article_id = Column(Integer,primary_key = True)
 	user_id = Column(Integer)
-	user = Column(VARCHAR(20))
+	user_name = Column(VARCHAR(20))
 	title = Column(VARCHAR(40))
 	time = Column(VARCHAR(20))
 	content = Column(VARCHAR(2000))
@@ -35,6 +35,8 @@ class Comment(Base):
 	article_id = Column(Integer)
 	comment_content = Column(String)
 	commenter_id = Column(Integer)
+	commenter_name = Column(String)
+	comment_time = Column(VARCHAR)
 	
 
 	

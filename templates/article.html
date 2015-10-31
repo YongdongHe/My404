@@ -1,5 +1,5 @@
 {% extends "homepage/cache.html" %}
-{% block title %}{{article_title}}{% end %}
+{% block title %}{{article.title}}{% end %}
 {% block content %}
 <!-- single -->
 <div class="blog-page">
@@ -8,11 +8,11 @@
 		<div class="blog-grids">
 			<div class="blog-content">
 				<div class="blog-post">
-					<h4>{{article_title}}</h4>
+					<h4>{{article.title}}</h4>
 					<div class="post-details">
-						<p>Posted By <a href="/blog?id={{user_id}}">{{user_name}}</a> &nbsp;&nbsp; On 15 jan, 2015 &nbsp;&nbsp; <a href="#comlist">Comments</a>  (10)</p>
+						<p>Posted By <a href="/blog?id={{article.user_id}}">{{article.user_name}}</a> &nbsp;&nbsp; On 15 jan, 2015 &nbsp;&nbsp; <a href="#comlist">Comments</a>  (10)</p>
 					</div>
-					{% module ArticleContent(article_content) %}
+					{% module ArticleContent(article.content) %}
 				</div>
 			</div>
 			<!-- <div class="blog-sidebar">
@@ -32,32 +32,45 @@
 		<div class="leave-form">
 			<h3 name="comlist">评论</h3>
 		</div>
+
+		<div class="comment">
 		{% for comment in comments%}
-		<div class="row rank-list">
-		    <div class="col-md-2 ">
-		        <div class="rank-item">
-		            <a href="/blog?id={{comment.commenter_id}}"><img class="userlogo" src="{{urls[comment.commenter_id]}}" alt=""></a>
-		        </div>
-		    </div>
-		    <div class="col-md-4">
-		    	<div class="rank-item">
-		            <p>{{comment.comment_content}}</p>
-		        </div>
-		    </div>
+			<div class="container">
+				<div class="row comment-item">
+				    <div class="col-md-1">
+				        <div class="comment-content">
+				            <a href="/blog?id={{comment.commenter_id}}"><img class="userlogo" src="{{urls[comment.commenter_id]}}" alt=""></a>
+				        </div>
+				    </div>
+				    <div class="col-md-4">
+				    	<div class="comment-content">
+				    		<p class="user-name">{{comment.commenter_name}}</p>
+				            <p>{{comment.comment_content}}</p>
+				            <p class="time">{{comment.comment_time}}</p>
+				        </div>
+				    </div>
+				</div>
+			</div>
+		{% end %}
 		</div>
-    	{% end %}
+
 		<div class="leave-form">
 			<h3>LEAVE YOUR OPINION</h3>
-			<form>
+			<form action="/article" method="post">
 <!-- 				<input type="text" placeholder="Name" required="">
 				<input type="text" placeholder="Email" required="">
 				<input type="text" placeholder="Subject" required> -->
-				<textarea placeholder="Message" required=""></textarea>	
+				<input hidden name="article_id" value="{{article.article_id}}">
+				<textarea placeholder="Message" name="comment_content" required=""></textarea>	
 				<input type="submit" value="SEND">
 			</form>
 		</div>
 	</div>
 </div>
 <!-- //single -->
-
+<script type="text/javascript">
+	$(document).ready(function() {
+		
+	});
+</script>
 {% end %}

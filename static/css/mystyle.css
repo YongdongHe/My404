@@ -234,3 +234,29 @@ div.rank-list{
 .rank-item p.user-name{
 	font-size: 16px;
 }
+
+/*评论页面*/
+.comment div.container{
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+div.comment-item{
+	padding-top: 15px;
+	padding-bottom: 15px;
+	border-bottom: solid #dddedf 1px;
+}
+
+.comment-content img.userlogo{
+	width: 70px;
+	height: 70px;
+	border-radius: 50%;
+}
+.comment-content p.user-name{
+	font-size: 16px;
+	color: #63c6ae;
+}
+.comment-content p.time{
+	font-size: 12px;
+	font-family: "微软雅黑";
+	color: #7A838D;
+}

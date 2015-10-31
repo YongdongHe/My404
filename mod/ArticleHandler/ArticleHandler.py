@@ -17,6 +17,7 @@ class ArticleHandler(tornado.web.RequestHandler):
         return self.application.db
 
     def get(self):
+        #get article by id
         sessionhelper = SessionHelper(self,self.db)
         article_id = self.get_argument("article_id")
         article = self.db.query(Article).filter(Article.article_id == article_id).first()
@@ -26,36 +27,35 @@ class ArticleHandler(tornado.web.RequestHandler):
             commenter = self.db.query(User).filter(User.user_id == comment.commenter_id).first()
             urls[commenter.user_id]=GravatarHelper(commenter.user_email,240).getUrl()
         self.render("article.html",
-            user_id=article.user_id,    
-            user_name=article.user,
-            article_title=article.title,
-            article_content=article.content,
+            article=article,
             comments=comments,
             urls=urls,
             correct_user=sessionhelper.checkSession())
         pass
 
     def post(self):
+        #new comment
         sessionhelper = SessionHelper(self,self.db)
         correct_user = sessionhelper.checkSession()
         response = {}
         if correct_user!=None:
             try:
-                article_content = self.get_argument("article_content")
-                print article_content
-                article_title = self.get_argument("article_title")
-                username = correct_user.user_name
+                article_id = self.get_argument("article_id")
+                comment_content = self.get_argument("comment_content")
                 posttime = time.strftime('%Y-%m-%d %X',time.localtime(time.time()))
-                article = Article(user_id = correct_user.user_id,
-                    title = article_title,
-                    content = article_content,
-                    user = username,
-                    time = posttime)
-                self.db.add(article)
+                comment = Comment(
+                    article_id=article_id, 
+                    comment_content=comment_content,
+                    commenter_id=correct_user.user_id,
+                    commenter_name=correct_user.user_name,
+                    comment_time=posttime
+                    )
+                self.db.add(comment)
                 self.db.commit()
                 response["status"]=200
-                response["data"]='success'
+                response["data"]='comment success'
                 self.write(response)
+                self.redirect("/article?article_id=%s"%(article_id))
             except Exception, e:
                 response["status"]=400
                 response["data"]=str(e)
@@ -70,6 +70,6 @@ class ArticleContentModule(tornado.web.UIModule):
     def render(self,article_content):
         return article_content
 
-class CommentItemModule(tornado.web.UIModule):
-    def render(self):
-        return 's'
+# class CommentItemModule(tornado.web.UIModule):
+#     def render(self):
+#         return 's'

@@ -47,7 +47,7 @@
 			console.log(title);
 			console.log(content);
 			$.ajax({
-				url: '/article',
+				url: '/articlewrite',
 				type: 'POST',
 				dataType: 'json',
 				data: {article_title: title,article_content:content},
