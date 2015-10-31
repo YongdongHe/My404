@@ -10,7 +10,7 @@
 				<div class="blog-post">
 					<h4>{{article.title}}</h4>
 					<div class="post-details">
-						<p>Posted By <a href="/blog?id={{article.user_id}}">{{article.user_name}}</a> &nbsp;&nbsp; On 15 jan, 2015 &nbsp;&nbsp; <a href="#comlist">Comments</a>  (10)</p>
+						<p>Posted By <a href="/blog?id={{article.user_id}}">{{article.user_name}}</a> &nbsp;&nbsp; On {{article.time}} &nbsp;&nbsp; <a href="#comlist">Comments</a> {{len(comments)}}</p>
 					</div>
 					{% module ArticleContent(article.content) %}
 				</div>
@@ -34,6 +34,7 @@
 		</div>
 
 		<div class="comment">
+		{% set i=1 %}
 		{% for comment in comments%}
 			<div class="container">
 				<div class="row comment-item">
@@ -46,11 +47,12 @@
 				    	<div class="comment-content">
 				    		<p class="user-name">{{comment.commenter_name}}</p>
 				            <p>{{comment.comment_content}}</p>
-				            <p class="time">{{comment.comment_time}}</p>
+				            <p class="time">{{comment.comment_time}}      {{i}}楼</p>
 				        </div>
 				    </div>
 				</div>
 			</div>
+			{% set i=i+1 %}
 		{% end %}
 		</div>
 
