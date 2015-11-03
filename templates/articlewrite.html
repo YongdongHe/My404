@@ -24,8 +24,8 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title">新文章</h4>
       </div>
-      <div class="modal-body">
-        <p>发布成功</p>
+      <div class="modal-body" >
+        <p id="modal-text">发布成功</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -51,19 +51,18 @@
 				type: 'POST',
 				dataType: 'json',
 				data: {article_title: title,article_content:content},
-			})
-			.done(function() {
-				console.log("success");
-				$('#myModal').modal('show')//弹出模态框
-
-			})
-			.fail(function() {
-				console.log("error");
-			})
-			.always(function() {
-				console.log("complete");
-			});
-			
+				success:function(response){
+					console.log(response);
+					var code = response["status"]);
+					if(code == 200){
+						$("#modal-text").text('发布成功')
+						$('#myModal').modal('show')//弹出模态框
+					}else{
+						$("#modal-text").text('发布失败')
+						$('#myModal').modal('show')//弹出模态框
+					}
+				}
+			})			
 		});
 	})
 </script>

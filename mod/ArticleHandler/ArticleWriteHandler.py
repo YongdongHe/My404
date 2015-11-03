@@ -33,10 +33,11 @@ class ArticleWriteHandler(tornado.web.RequestHandler):
                 article_title = self.get_argument("article_title")
                 username = correct_user.user_name
                 posttime = time.strftime('%Y-%m-%d %X',time.localtime(time.time()))
-                article = Article(user_id = correct_user.user_id,
+                article = Article(
+                    user_id = correct_user.user_id,
+                    user_name = username,
                     title = article_title,
                     content = article_content,
-                    user = username,
                     time = posttime)
                 self.db.add(article)
                 self.db.commit()
