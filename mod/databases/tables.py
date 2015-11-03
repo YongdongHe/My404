@@ -8,10 +8,10 @@ class Article(Base):
 	__tablename__ = 'articles'
 	article_id = Column(Integer,primary_key = True)
 	user_id = Column(Integer)
-	user_name = Column(VARCHAR(20))
-	title = Column(VARCHAR(40))
-	time = Column(VARCHAR(20))
-	content = Column(VARCHAR(2000))
+	user_name = Column(String)
+	title = Column(String)
+	time = Column(String)
+	content = Column(String)
 
 class User(Base):
 	__tablename__ = 'users'
