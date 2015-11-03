@@ -53,13 +53,13 @@
 				data: {article_title: title,article_content:content},
 				success:function(response){
 					console.log(response);
-					var code = response["status"]);
+					var code = response["status"];
 					if(code == 200){
-						$("#modal-text").text('发布成功')
-						$('#myModal').modal('show')//弹出模态框
+						$("#modal-text").text('发布成功');
+						$('#myModal').modal('show');//弹出模态框
 					}else{
-						$("#modal-text").text('发布失败')
-						$('#myModal').modal('show')//弹出模态框
+						$("#modal-text").text('发布失败');
+						$('#myModal').modal('show');//弹出模态框
 					}
 				}
 			})			
