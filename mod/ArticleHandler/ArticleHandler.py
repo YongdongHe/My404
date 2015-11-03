@@ -1,4 +1,4 @@
-#coding=utf-8
+# -*- coding: utf-8 -*-
 from tornado.httpclient import HTTPRequest, AsyncHTTPClient
 from mod.databases.tables import Article
 from mod.databases.tables import Comment
