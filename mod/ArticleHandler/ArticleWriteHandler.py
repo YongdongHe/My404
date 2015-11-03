@@ -46,6 +46,7 @@ class ArticleWriteHandler(tornado.web.RequestHandler):
             except Exception, e:
                 response["status"]=400
                 response["data"]=str(e)
+                self.db.rollback()
                 self.write(response)
                 raise e
         else:

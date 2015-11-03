@@ -45,11 +45,15 @@ class RegisterHandler(tornado.web.RequestHandler):
                     data["status"] = 200
                     data["data"] = "Register Success"
                     self.write(data)
-        except RegisterError, e:            
+        except RegisterError, e:
+            self.db.rollback()        
             data["status"] = e.getErrorCode()
             data["data"] = e.getErrorMsg()
             # debugPrint.print_green_text("DebugMsgIn%s:%s%s"%('RegisterHandler',"Register failed",e.getErrorMsg()))
             self.write(data)
+        except Exception ,e:
+            self.db.rollback()
+            print "RegisterHandler:"+str(e)
 
 
 #Check register msg

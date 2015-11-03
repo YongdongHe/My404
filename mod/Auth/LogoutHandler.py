@@ -25,6 +25,7 @@ class LogoutHandler(tornado.web.RequestHandler):
             self.clear_cookie("userid")
             self.render("homepage/index.html",correct_user = None)
         except Exception, e:
+            self.db.rollback()
             print 'Exception e in mod.LogoutHandler.get:%s'%(str(e))
             self.render("homepage/index.html",correct_user = None)
         

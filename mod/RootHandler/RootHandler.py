@@ -63,13 +63,19 @@ class HomePageHandler(tornado.web.RequestHandler):
             else:
                 return None
         except Exception, e:
+            self.db.rollback()
             print 'Exception e in mod.RootHandler.checkSession:%s'%(str(e))
             return None
 
     def RankPageHandler(self,correct_user):
-        allusers = self.db.query(User).all()
-        urls={}
-        for user in allusers:
-            urls[user.user_id]=GravatarHelper(user.user_email,140).getUrl()
-        self.render('homepage/rank.html',
-                correct_user=correct_user,users=allusers,urls=urls)
+        try:
+            allusers = self.db.query(User).all()
+            urls={}
+            for user in allusers:
+                urls[user.user_id]=GravatarHelper(user.user_email,140).getUrl()
+            self.render('homepage/rank.html',
+                    correct_user=correct_user,users=allusers,urls=urls)
+        except Exception, e:
+            self.db.rollback()
+            print "HomePageHandler"+str(e)
+        
