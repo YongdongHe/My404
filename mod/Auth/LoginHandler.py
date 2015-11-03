@@ -56,22 +56,19 @@ class LoginHelper(object):
         self.psd = str(psd)
 
     def Check(self):
-        try:
-            if len(self.email) < 7:
-                raise LoginError("Length of email must be greater than or equal to 7",400);
-            if re.match("^.+\\@(\\[?)[a-zA-Z0-9\\-\\.]+\\.([a-zA-Z]{2,3}|[0-9]{1,3})(\\]?)$", self.email) == None:
-                raise LoginError("Invalid Email Address",400)
-            user = self.db.query(User).filter(User.user_email == self.email).first()
-            if user==None:
-                raise LoginError("Unexisted Email Address",404)
-            elif user.user_psd == self.psd: 
-                return user
-            else:
-            	raise LoginError("Wrong password for this email",403)
-            return None     
-        except Exception, e:
-            self.db.rollback()
-            raise e
+        if len(self.email) < 7:
+            raise LoginError("Length of email must be greater than or equal to 7",400);
+        if re.match("^.+\\@(\\[?)[a-zA-Z0-9\\-\\.]+\\.([a-zA-Z]{2,3}|[0-9]{1,3})(\\]?)$", self.email) == None:
+            raise LoginError("Invalid Email Address",400)
+        user = self.db.query(User).filter(User.user_email == self.email).first()
+        if user==None:
+            raise LoginError("Unexisted Email Address",404)
+        elif user.user_psd == self.psd: 
+            return user
+        else:
+        	raise LoginError("Wrong password for this email",403)
+        return None     
+
 
 
 

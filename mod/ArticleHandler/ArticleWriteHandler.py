@@ -48,6 +48,5 @@ class ArticleWriteHandler(tornado.web.RequestHandler):
                 response["data"]=str(e)
                 self.db.rollback()
                 self.write(response)
-                raise e
         else:
             self.render("homepage/login.html",correct_user=None)

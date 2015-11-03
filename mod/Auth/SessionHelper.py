@@ -32,5 +32,4 @@ class SessionHelper(object):
         except Exception, e:
             self.db.rollback()
             print 'Exception e in mod.Auth.SessionHelper.checkSession:%s'%(str(e))
-            raise e
             return None
