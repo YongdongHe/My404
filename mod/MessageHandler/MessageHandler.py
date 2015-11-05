@@ -19,19 +19,7 @@ class MessageHandler(tornado.web.RequestHandler):
     def get(self):
         #get article by id
         sessionhelper = SessionHelper(self,self.db)
-        article_id = self.get_argument("article_id")
-        article = self.db.query(Article).filter(Article.article_id == article_id).first()
-        comments = self.db.query(Comment).filter(Comment.article_id == article_id).order_by(Comment.comment_id).all()
-        urls={}
-        for comment in comments:
-            commenter = self.db.query(User).filter(User.user_id == comment.commenter_id).first()
-            urls[commenter.user_id]=GravatarHelper(commenter.user_email,240).getUrl()
-        self.render("article.html",
-            article=article,
-            comments=comments,
-            urls=urls,
-            correct_user=sessionhelper.checkSession())
-        pass
+        correct_user = sessionhelper.checkSession()
 
     def post(self):
         #new comment
