@@ -37,6 +37,10 @@ class Comment(Base):
 	commenter_id = Column(Integer)
 	commenter_name = Column(String)
 	comment_time = Column(VARCHAR)
+
+class Message(Base):
+	__tablename__ = 'messages'
+	message_id = Column(Integer,primary_key=True)
 	
 
 	

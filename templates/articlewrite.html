@@ -61,6 +61,10 @@
 						$("#modal-text").text('发布失败');
 						$('#myModal').modal('show');//弹出模态框
 					}
+				},
+				fail:function(){
+					$("#modal-text").text('未知错误');
+					$('#myModal').modal('show');//弹出模态框
 				}
 			})			
 		});
