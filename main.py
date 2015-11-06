@@ -35,6 +35,7 @@ from mod.BlogHandler.BlogHandler import BlogHandler
 from mod.Auth.RegisterHandler import RegisterHandler
 from mod.Auth.LoginHandler import LoginHandler
 from mod.Auth.LogoutHandler import LogoutHandler
+from mod.MessageHandler.MessageHandler import MessageHandler
 from tornado.options import define, options
 
 define("port", default=3000, help="run on the given port", type=int)
@@ -67,7 +68,8 @@ class Application(tornado.web.Application):
         (r"/db",DbHandler),
         (r"/article",ArticleHandler),
         (r"/articlewrite",ArticleWriteHandler),
-        (r"/blog",BlogHandler)
+        (r"/blog",BlogHandler),
+        (r"/msg",MessageHandler),
         ]
         modules={'ArticleContent': ArticleContentModule}
         settings = dict(

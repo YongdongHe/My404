@@ -5,26 +5,23 @@ from mod.databases.tables import Comment
 from mod.databases.tables import User
 from mod.Auth.SessionHelper import SessionHelper
 from mod.BlogHandler.BlogHandler import GravatarHelper
+from mod.BaseHandler import BaseHandler
 import tornado.web
 import tornado.gen
 import urllib
 import time
 
-class MessageHandler(tornado.web.RequestHandler):
-
-    @property
-    def db(self):
-        return self.application.db
-
+class MessageHandler(BaseHandler):
     def get(self):
         #get article by id
         sessionhelper = SessionHelper(self,self.db)
-        correct_user = sessionhelper.checkSession()
+        correct_user = self.getCurrentUser()
+        print correct_user
 
     def post(self):
         #new comment
         sessionhelper = SessionHelper(self,self.db)
-        correct_user = sessionhelper.checkSession()
+        correct_user = self.getCurrentUser()
         response = {}
         if correct_user!=None:
             try:
@@ -51,13 +48,3 @@ class MessageHandler(tornado.web.RequestHandler):
                 self.write(response)
         else:
             self.render("homepage/login.html",correct_user=None)
-
-
-
-class ArticleContentModule(tornado.web.UIModule):
-    def render(self,article_content):
-        return article_content
-
-# class CommentItemModule(tornado.web.UIModule):
-#     def render(self):
-#         return 's'
