@@ -16,7 +16,10 @@ class MessageHandler(BaseHandler):
         #get article by id
         sessionhelper = SessionHelper(self,self.db)
         correct_user = self.getCurrentUser()
-        print correct_user
+        if correct_user == None:
+            print 'No user'
+        else:
+            print correct_user.user_name
 
     def post(self):
         #new comment

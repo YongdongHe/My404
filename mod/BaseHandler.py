@@ -18,8 +18,9 @@ class BaseHandler(tornado.web.RequestHandler):
         try:
             session = str(self.get_secure_cookie("session"))
             user_id = int(self.get_secure_cookie("userid"))
-            if session == None or user == None:
+            if session == None or user_id == None:
                 print 'Error'
+                return None
             correct_session = self.db.query(Session).filter(Session.session_value == session).first()
             self.db.commit()
             if (correct_session != None) and (correct_session.user_id == user_id):
