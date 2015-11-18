@@ -13,21 +13,22 @@ class MessageBoxHandler(BaseHandler):
     def get(self):
         response = {}
         current_user = self.current_user()
-        if current_user == None:
-            response["code"]=304
-            response["data"]="Please log in."
-            self.write(response)
-        elif:
-            response["data"]={}
-            response["data"]["read"]=[]
-            response["data"]["unread"]=[]
-            unreads = self.db.query(Message).filter(
-                Message.user_id == current_user.user_id,
-                Message.read == 0)
-            reads = self.db.query(Message).filter(
-                Message.user_id == current_user.user_id,
-                Message.read == 1)
-            for msg in unreads:
+        self.write("s")
+        # if current_user == None:
+        #     response["code"]=304
+        #     response["data"]="Please log in."
+        #     self.write(response)
+        # elif:
+        #     response["data"]={}
+        #     response["data"]["read"]=[]
+        #     response["data"]["unread"]=[]
+        #     unreads = self.db.query(Message).filter(
+        #         Message.user_id == current_user.user_id,
+        #         Message.read == 0)
+        #     reads = self.db.query(Message).filter(
+        #         Message.user_id == current_user.user_id,
+        #         Message.read == 1)
+        #     for msg in unreads:
                 
 
 
