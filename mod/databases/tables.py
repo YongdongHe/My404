@@ -41,6 +41,10 @@ class Comment(Base):
 class Message(Base):
 	__tablename__ = 'messages'
 	message_id = Column(Integer,primary_key=True)
+	message_type = Column(String)
+	message_content = Column(String)
+	user_id = Column(Integer)
+	read = Column(Integer)
 	
 
 	

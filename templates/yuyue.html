@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <link rel="stylesheet" href="{{ static_url('css/jquery.mobile-1.4.2.css') }}">
+        <title>预约</title>
+    </head>
+    <body>
+    <div data-role="page" id="page_one">
+        <div data-role="navbar">
+            <ul>
+                <li> <a id="one" class="order_info"></a></li>
+                <li> <a id="two" class="order_info"></a></li>
+                <li> <a id="three" class="order_info"></a></li>
+                <li> <a href="#my_order_page" data-transition="fade" id="my_order">我的</a></li>
+            </ul>
+            
+        </div>
+        <div role="main" class="ui-content">
+            <div class="ordertype" id="12" data-role="collapsible" data-collapsed-icon="arrow-d" data-expanded-icon="arrow-u">
+              <h1>健身</h1>
+                <ul data-role="listview" data-inset="true" data-theme="d">
+          
+              </ul>
+            </div>
+            <div class="ordertype" id="10" data-role="collapsible" data-collapsed-icon="arrow-d" data-expanded-icon="arrow-u">
+              <h1>羽毛球</h1>
+                <ul data-role="listview" data-inset="true" data-theme="d">
+          
+              </ul>
+            </div>
+            <div class="ordertype" id="7" data-role="collapsible" data-collapsed-icon="arrow-d" data-expanded-icon="arrow-u">
+              <h1>乒乓球</h1>
+                <ul data-role="listview" data-inset="true" data-theme="d">
+          
+              </ul>
+            </div>
+            <div class="ordertype" id="8" data-role="collapsible" data-collapsed-icon="arrow-d" data-expanded-icon="arrow-u">
+              <h1>排球</h1>
+                <ul data-role="listview" data-inset="true" data-theme="d">
+          
+              </ul>
+            </div>
+            <div class="ordertype" id="9" data-role="collapsible" data-collapsed-icon="arrow-d" data-expanded-icon="arrow-u">
+              <h1>篮球</h1>
+                <ul data-role="listview" data-inset="true" data-theme="d">
+          
+              </ul>
+            </div>
+            <div  class="ordertype" id="11" data-role="collapsible" data-collapsed-icon="arrow-d" data-expanded-icon="arrow-u">
+              <h1>舞蹈</h1>
+                <ul data-role="listview" data-inset="true" data-theme="d">
+          
+              </ul>
+            </div>
+            <div class="ordertype" id="13" data-role="collapsible" data-collapsed-icon="arrow-d" data-expanded-icon="arrow-u">
+              <h1>武术</h1>
+                <ul data-role="listview" data-inset="true" data-theme="d">
+          
+              </ul>
+            </div>
+            <div class="ordertype" id="14" data-role="collapsible" data-collapsed-icon="arrow-d" data-expanded-icon="arrow-u">
+              <h1>跆拳道</h1>
+              <ul data-role="listview" data-inset="true" data-theme="d">
+          
+              </ul>
+            </div>
+        </div>
+    </div>
+
+    <div data-role="page" id="my_order_page">
+        <div data-role="content"> 
+          <a href="#page_one"  data-role="button" data-icon="back">我的预约</a>
+            <ul data-role="listview" data-inset="true" data-theme="d">
+          
+            </ul>
+        </div>
+    </div>
+    </div data-role="page" id="orderRequest_page">
+        <div data-role="content"> 
+          <a href="#page_one"  data-role="button" data-icon="back">我的预约</a>
+        </div>
+    <div>
+      
+    </div>
+    <input type="text" id="user_cookie" type="hidden" value="{{cookie}}">
+    <script type="text/javascript" src="{{ static_url('js/jquery.min.js') }}"></script>
+    <script type="text/javascript" src="{{ static_url('js/jquery.mobile-1.4.2.min.js') }}"></script>
+    <script type="text/javascript">
+        var tempdayInfo = '';
+        var itemId='';
+
+        //获取我的所有预定列表
+        function getMyOrder() {
+          $("#my_order").click(function(event) {
+            /* Act on the event */
+            jQuery.ajax({
+              url: 'http://yuyue.seu.edu.cn/eduplus/phoneOrder/fetchMyOrdersP.do',
+              type: 'GET',
+              dataType: 'jsonp',
+              data: {
+                'sclId': 1
+              },
+              crossDomain: true,
+              headers: {
+                'cookie': $("#user_cookie").val()
+              },
+              success: function(data, textStatus, xhr) {
+                var state = {
+                  6:'取消',
+                  4:'完成',
+                  2:'通过'
+                }
+                var itemhtml = '';
+                var orderIndexs = data['rows']
+                for (var i = 0; i < orderIndexs.length; i++) {
+                  itemhtml = itemhtml + '<li class="ui-li-static ui-body-inherit"><p>' + orderIndexs[i]['itemName'] + '(' + orderIndexs[i]['floorName'] + ')' + '&nbsp;&nbsp;' + orderIndexs[i]['useDate'] + '</p><p>' + orderIndexs[i]['useBeginTime'] + '-' + orderIndexs[i]['useEndTime'] + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + state[orderIndexs[i]['state']] + '</p></li>';
+                }
+                // itemhtml = itemhtml+'</ol>';
+                $("#my_order_page ul").html(itemhtml);
+
+              },
+              error: function(xhr, textStatus, errorThrown) {
+                //called when there is an error
+              }
+            });
+
+          });
+        };
+
+        //初始化，包括获取今天时间，以及第一天的项目id，value初始化
+        function init() {
+          // console.log($("#user_cookie").val());
+          document.cookie = $("#user_cookie").val()+';path=/;domain=.seu.edu.cn';
+          jQuery.ajax({
+            url: 'http://yuyue.seu.edu.cn/eduplus/phoneOrder/initOrderIndexP.do?sclId=1',
+            type: 'GET',
+            dataType: 'jsonp',
+            // headers: {
+            //   'cookie': $("#user_cookie").val()
+            // },
+            success: function(data, textStatus, xhr) {
+              $("#one").text(data['timeList'][0]['dayInfo'].split(' ')[1]);
+              $("#one").attr('value', data['timeList'][0]['dayInfo'].split(' ')[0]);
+
+              $("#two").text(data['timeList'][1]['dayInfo'].split(' ')[1]);
+              $("#two").attr('value', data['timeList'][1]['dayInfo'].split(' ')[0]);
+
+              $("#three").text(data['timeList'][2]['dayInfo'].split(' ')[1]);
+              $("#three").attr('value', data['timeList'][2]['dayInfo'].split(' ')[0]);
+
+              // initOrder(data['timeList'][0]['dayInfo'].split(' ')[0]);
+
+              tempdayInfo = data['timeList'][0]['dayInfo'].split(' ')[0];
+
+              $("#one").attr('class', $("#one").attr('class') + ' ui-btn-active');
+              initOrder();
+
+              orderTypeClick();
+              //called when successful
+              // console.log(data)
+
+            },
+            error: function(xhr, textStatus, errorThrown) {
+              console.log(textStatus)
+                //called when there is an error
+            }
+          });
+
+        };
+
+        //导航栏切换更改日期
+        function initOrder() {
+          $(".order_info").each(function(index, el) {
+            $(this).click(function(event) {
+              /* Act on the event */
+              tempdayInfo = $(this).attr('value');
+              orderTypeClick();
+            });
+
+          });
+        }
+        //点击折叠区域事件
+        function orderTypeClick() {
+          $(".ordertype").each(function(index, el) {
+            $(this).collapsible({
+              expand: function(event, ui) {
+                itemId = $(this).attr('id');
+                getOrderInfo($(this).attr('id'), tempdayInfo);
+                // console.log($(this).attr('value'));
+              }
+            });
+          });
+        };
+
+
+        function personalOrder(time){
+          // console.log("get")
+          // console.log(time);
+          // console.log(tempdayInfo);
+          // console.log($("#user_cookie").val())
+          // jQuery.ajax({
+          //   url: '/wechat2/yuyue/{{openid}}',
+          //   type: 'POST',
+          //   dataType: 'text',
+          //   data: {
+          //     'itemId':itemId,
+          //     'dayInfo':tempdayInfo,
+          //     'time':time,
+          //     'url':'http://yuyue.seu.edu.cn/eduplus/order/judgeOrder.do?sclId=1',
+          //     'type':1,
+          //     'cookie':$("#user_cookie").val()
+          //     },
+          //   success: function(msg, textStatus, xhr) {
+          //     //called when successful
+          //     console.log(msg)
+          //     if(msg=='success'){
+          //       console.log('get')
+          //       $.mobile.changePage($("#orderRequest_page"))
+          //     }
+          //   },
+          //   error: function(xhr, textStatus, errorThrown) {
+          //     //called when there is an error
+          //     console.log(textStatus)
+          //   }
+          // });
+          alert("当前功能还在调试，敬请期待~");
+          
+        };
+
+        function getOrderInfo(itemId, dayInfo) {
+          // console.log(dayInfo);
+          jQuery.ajax({
+            url: 'http://yuyue.seu.edu.cn/eduplus/phoneOrder/phoneOrder/getOrderInfoP.do',
+            type: 'GET',
+            dataType: 'jsonp',
+            data: {
+              'sclId': 1,
+              'itemId': itemId,
+              'dayInfo': dayInfo
+            },
+            success: function(data, textStatus, xhr) {
+              //called when successful
+              // var itemhtml = '<ol data-role="listview" data-inset="true">';
+              var itemhtml = '';
+              var orderIndexs = data['orderIndexs']
+              for (var i = 0; i < orderIndexs.length; i++) {
+                itemhtml = itemhtml + '<li class="ui-li-static ui-body-inherit">' + orderIndexs[i]['avaliableTime'] + '&nbsp;&nbsp;&nbsp;' + orderIndexs[i]['usedSite'] + '/' + orderIndexs[i]['allSite'] + '<button style="margin-top:1px;margin-bottom:1px;" class="ui-btn ui-shadow ui-btn-right  ui-btn-inline ui-corner-all';
+                if(orderIndexs[i]['enable']==false){
+                  itemhtml = itemhtml+' ui-disabled"';
+                }
+                else{
+                  itemhtml = itemhtml+'" onclick="personalOrder(\''+orderIndexs[i]['avaliableTime']+'\')"';
+                }
+                itemhtml = itemhtml+'>预约</button></li>';
+              };
+              // itemhtml = itemhtml+'</ol>';
+              $("#" + itemId + " ul").html(itemhtml);
+
+            },
+            error: function(xhr, textStatus, errorThrown) {
+              //called when there is an error
+            }
+          });
+        };
+
+
+        
+
+        $(document).ready(function() {
+          getMyOrder();
+          init();
+          // test1();
+        });
+    </script>
+    </body>
+</html>

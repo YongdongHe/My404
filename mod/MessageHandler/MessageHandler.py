@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 from tornado.httpclient import HTTPRequest, AsyncHTTPClient
-from mod.databases.tables import Article
-from mod.databases.tables import Comment
-from mod.databases.tables import User
+from mod.databases.tables import Article,Comment,User,Message
 from mod.Auth.SessionHelper import SessionHelper
 from mod.BlogHandler.BlogHandler import GravatarHelper
 from mod.BaseHandler import BaseHandler
@@ -11,15 +9,27 @@ import tornado.gen
 import urllib
 import time
 
-class MessageHandler(BaseHandler):
+class MessageBoxHandler(BaseHandler):
     def get(self):
-        #get article by id
-        sessionhelper = SessionHelper(self,self.db)
-        correct_user = self.getCurrentUser()
-        if correct_user == None:
-            print 'No user'
-        else:
-            print correct_user.user_name
+        response = {}
+        current_user = self.current_user()
+        if current_user == None:
+            response["code"]=304
+            response["data"]="Please log in."
+            self.write(response)
+        elif:
+            response["data"]={}
+            response["data"]["read"]=[]
+            response["data"]["unread"]=[]
+            unreads = self.db.query(Message).filter(
+                Message.user_id == current_user.user_id,
+                Message.read == 0)
+            reads = self.db.query(Message).filter(
+                Message.user_id == current_user.user_id,
+                Message.read == 1)
+            for msg in unreads:
+                
+
 
     def post(self):
         #new comment
