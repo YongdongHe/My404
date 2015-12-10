@@ -24,7 +24,6 @@ import tornado.web
 # from mod.testapi.handler import testHandler
 from sqlalchemy.orm import scoped_session, sessionmaker
 from mod.databases.db import engine
-from mod.testapi.handler import DbHandler
 from mod.RootHandler.RootHandler import HomePageHandler
 from mod.RootHandler.RootHandler import IndexHandler
 from mod.RootHandler.RootHandler import IndexPageHandler
@@ -36,6 +35,8 @@ from mod.Auth.RegisterHandler import RegisterHandler
 from mod.Auth.LoginHandler import LoginHandler
 from mod.Auth.LogoutHandler import LogoutHandler
 from mod.MessageHandler.MessageHandler import MessageBoxHandler
+from mod.testapi.handler import TestHandler
+from mod.testapi.handler import TestapiHandler
 from tornado.options import define, options
 
 define("port", default=3000, help="run on the given port", type=int)
@@ -65,11 +66,11 @@ class Application(tornado.web.Application):
         (r"/register",RegisterHandler),
         (r"/login",LoginHandler),
         (r"/logout",LogoutHandler),
-        (r"/db",DbHandler),
         (r"/article",ArticleHandler),
         (r"/articlewrite",ArticleWriteHandler),
         (r"/blog",BlogHandler),
         (r"/msg",MessageBoxHandler),
+        (r"/test",TestapiHandler),
         ]
         modules={'ArticleContent': ArticleContentModule}
         settings = dict(
