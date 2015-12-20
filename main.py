@@ -37,6 +37,7 @@ from mod.Auth.LogoutHandler import LogoutHandler
 from mod.MessageHandler.MessageHandler import MessageBoxHandler
 from mod.testapi.handler import TestHandler
 from mod.testapi.handler import TestapiHandler
+from mod.Api.BusHandler import BusHandler
 from tornado.options import define, options
 
 define("port", default=3000, help="run on the given port", type=int)
@@ -71,6 +72,7 @@ class Application(tornado.web.Application):
         (r"/blog",BlogHandler),
         (r"/msg",MessageBoxHandler),
         (r"/test",TestapiHandler),
+        (r"/api/bus",BusHandler)
         ]
         modules={'ArticleContent': ArticleContentModule}
         settings = dict(
