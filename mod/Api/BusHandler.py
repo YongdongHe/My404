@@ -38,8 +38,12 @@ class BusHandler(tornado.web.RequestHandler):
             urlGetLineID = 'http://112.2.33.3:5902/wap/line.do?command=toLn'
             reqLine = HTTPRequest(urlGetLineID,request_timeout=8)
             resLineId = yield client.fetch(reqLine)
-            soup = BeautifulSoup(resLineId.body) 
-            lineID = soup.find('option',string='711')['value'][:-4]
+            soup = BeautifulSoup(resLineId.body)
+            lineID = ''
+            for option in soup.findAll('option'):
+                if option.string == '711':
+                    lineID = option['value'][:-4]
+                    break
             print lineID
             urlToCompany = 'http://112.2.33.3:5902/wap/line.do?command=toDiss2&stationNo=15&stationName=%E5%B0%86%E5%86%9B%E5%A4%A7%E9%81%93%E8%BF%8E%E7%BF%A0%E8%B7%AF&lineId='+lineID+'&inDown=1&lineName=711&strInfo=%E5%87%BA%E5%8F%A3%E5%8A%A0%E5%B7%A5%E5%8C%BA%E5%AE%A2%E8%BF%90%E7%AB%99%E2%86%92%E5%AE%89%E5%BE%B7%E9%97%A8'
             print urlToCompany
