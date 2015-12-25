@@ -11,12 +11,19 @@ class SeuxkHandler(tornado.web.RequestHandler):
 
     @tornado.gen.coroutine
     def get(self):
-        key = str(self.get_secure_cookie("seuxkkey"))
-        enble = self.db.query(Xkkey).filter(Xkkey.key == key).first()
-        if enble != None:
-            self.render("seuxk.js")
-        else:
-            self.render("seuxkerror.js")
+        try:
+            key = str(self.get_secure_cookie("seuxkkey"))
+            enble = self.db.query(Xkkey).filter(Xkkey.key == key).first()
+            if enble != None:
+                enble.time = enble.time + 1
+                self.db.commit()
+                self.render("seuxk.js")
+            else:
+                self.render("seuxkerror.js")
+        except Exception, e:
+            print str(e)
+            self.db.rollback()
+            self.write("unknow error")
 
 class SeuxkKeyHandler(tornado.web.RequestHandler):
     @property
@@ -26,5 +33,6 @@ class SeuxkKeyHandler(tornado.web.RequestHandler):
     @tornado.gen.coroutine
     def get(self):
         key  = self.get_argument("key")
+        self.clear_cookie("seuxkkey")
         self.set_secure_cookie("seuxkkey",key)
         self.write("Set key as %s succcessfully."%(key))

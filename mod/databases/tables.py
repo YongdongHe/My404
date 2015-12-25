@@ -50,6 +50,7 @@ class Xkkey(Base):
 	__tablename__ = 'xkkeys'
 	key_id = Column(Integer,primary_key=True)
 	key = Column(String)
+	time = Column(Integer)
 
 	
 
