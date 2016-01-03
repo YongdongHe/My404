@@ -40,6 +40,7 @@ from mod.testapi.handler import TestapiHandler
 from mod.Api.BusHandler import BusHandler
 from mod.Api.SeuxkHandler import SeuxkHandler
 from mod.Api.SeuxkHandler import SeuxkKeyHandler
+from mod.DownloadHandler.DownloadHandler import DownloadFileHandler
 from tornado.options import define, options
 
 define("port", default=3000, help="run on the given port", type=int)
@@ -76,8 +77,8 @@ class Application(tornado.web.Application):
         (r"/test",TestapiHandler),
         (r"/api/bus",BusHandler),
         (r"/api/seuxk",SeuxkHandler),
-        (r"/api/seuxk/getkey",SeuxkKeyHandler)
-        ]
+        (r"/api/seuxk/getkey",SeuxkKeyHandler),
+        (r"/download",DownloadFileHandler)        ]
         modules={'ArticleContent': ArticleContentModule}
         settings = dict(
             debug=True,
@@ -90,6 +91,7 @@ class Application(tornado.web.Application):
         self.db = scoped_session(sessionmaker(bind=engine,
                                               autocommit=False, autoflush=True,
                                               expire_on_commit=False))
+        self.filepath=os.path.join(os.path.dirname(__file__),'files')
 
 if __name__ == '__main__':
     tornado.options.parse_command_line()

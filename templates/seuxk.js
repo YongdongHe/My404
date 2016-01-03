@@ -84,7 +84,7 @@ $(".button2").each(function()
 $("td[id!='']").each(function()
 {
     var jxbbh = $(this).attr("id");
-    if(jxbbh.toString().length == 20){
+    if(jxbbh.toString().length >= 9){
         $(this).click(function(){
         var flag = true;
         while(flag){
