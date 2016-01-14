@@ -37,13 +37,14 @@
 						$("#msg_success").hide();
 						$("#msg_success").text(data["data"]);
 						$("#msg_success").show();
+						window.location.href="/home/index";
 					}else{
 						$("#msg_danger").hide();
 						$("#msg_success").hide();
 						$("#msg_danger").text(data["data"]);
 						$("#msg_danger").show();
 					}
-					window.location.href="/home/index";
+					
 				}
 			})
 			

@@ -18,6 +18,9 @@ class IndexPageHandler(tornado.web.RequestHandler):
     def get(self):
     	user_session = str(self.get_secure_cookie("session"))
         self.render('homepage/index.html',correct_user=None)
+        print 'real-ip:%s'%self.request.remote_ip
+        remote_ip = str(self.request.headers.get("x-real-ip", "default-ip"))
+        print 'remote_ip:%s'%(remote_ip)
 
 class HomePageHandler(tornado.web.RequestHandler):
     @property

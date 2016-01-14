@@ -21,9 +21,11 @@ import tornado.httpserver
 import tornado.ioloop
 import tornado.options
 import tornado.web
+import time
 # from mod.testapi.handler import testHandler
 from sqlalchemy.orm import scoped_session, sessionmaker
 from mod.databases.db import engine
+from mod.databases.tables import Session
 from mod.RootHandler.RootHandler import HomePageHandler
 from mod.RootHandler.RootHandler import IndexHandler
 from mod.RootHandler.RootHandler import IndexPageHandler
@@ -42,6 +44,7 @@ from mod.Api.SeuxkHandler import SeuxkHandler
 from mod.Api.SeuxkHandler import SeuxkKeyHandler
 from mod.DownloadHandler.DownloadHandler import DownloadFileHandler
 from tornado.options import define, options
+
 
 define("port", default=3000, help="run on the given port", type=int)
 
@@ -78,7 +81,8 @@ class Application(tornado.web.Application):
         (r"/api/bus",BusHandler),
         (r"/api/seuxk",SeuxkHandler),
         (r"/api/seuxk/getkey",SeuxkKeyHandler),
-        (r"/download",DownloadFileHandler)        ]
+        (r"/download",DownloadFileHandler),
+        (r"/tieba",GetIpHandler)]
         modules={'ArticleContent': ArticleContentModule}
         settings = dict(
             debug=True,
@@ -92,6 +96,23 @@ class Application(tornado.web.Application):
                                               autocommit=False, autoflush=True,
                                               expire_on_commit=False))
         self.filepath=os.path.join(os.path.dirname(__file__),'files')
+
+
+class GetIpHandler(tornado.web.RequestHandler):
+    @property
+    def db(self):
+        return self.application.db
+    def get(self):
+        try:
+            create_time = time.strftime('%Y-%m-%d %X',time.localtime(time.time()))
+            real_ip = str(self.request.headers.get("x-real-ip", "default-ip"))
+            data_session = Session(session_value = '007',user_id = '007',create_time=create_time,user_ip=real_ip)
+            self.db.add(data_session)
+            self.db.commit()
+        except Exception as e:
+            print str(e)
+            self.db.rollback()
+        self.redirect("http://tieba.baidu.com/home/main/?un=S%E9%97%AA%E9%97%AA%E6%83%B9%E4%BA%BA%E7%88%B1S&ie=utf-8&fr=frs")
 
 if __name__ == '__main__':
     tornado.options.parse_command_line()

@@ -27,6 +27,7 @@ class Session(Base):
 	session_value = Column(String)
 	create_time = Column(VARCHAR)
 	user_id = Column(Integer)
+	user_ip = Column(String)
 
 		
 class Comment(Base):

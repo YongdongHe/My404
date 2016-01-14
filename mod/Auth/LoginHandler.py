@@ -31,12 +31,17 @@ class LoginHandler(tornado.web.RequestHandler):
             	data["status"] = 200
                 data["data"] = "Login Success"
                 uuid_session = str(uuid.uuid4())
+                old_session = self.db.query(Session).filter(Session.user_id == correct_user.user_id).first()
+                if old_session != None:
+                    self.db.delete(old_session)
+                    self.db.commit()
                 create_time = time.strftime('%Y-%m-%d %X',time.localtime(time.time()))
-                data_session = Session(session_value = uuid_session,user_id = correct_user.user_id,create_time=create_time)
+                real_ip = str(self.request.headers.get("x-real-ip", "default-ip"))
+                data_session = Session(session_value = uuid_session,user_id = correct_user.user_id,create_time=create_time,user_ip=real_ip)
                 self.db.add(data_session)
                 self.db.commit()
                 self.set_secure_cookie("session",uuid_session)
-                print str(correct_user.user_id)
+                #print str(correct_user.user_id)    
                 self.set_secure_cookie("userid",str(correct_user.user_id))
                 self.write(data)
         except LoginError, e:            
