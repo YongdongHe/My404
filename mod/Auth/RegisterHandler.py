@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from tornado.httpclient import HTTPRequest, AsyncHTTPClient
+from mod.BaseHandler import BaseHandler
 from mod.databases.tables import User
 # from mod.Debug.Col import Color
 import re
@@ -8,12 +9,7 @@ import tornado.gen
 import urllib
 import time
 
-class RegisterHandler(tornado.web.RequestHandler):
-
-    @property
-    def db(self):
-        return self.application.db
-
+class RegisterHandler(BaseHandler):
     def post(self):
         # debugPrint = Color()
         # debugPrint.print_green_text("DebugMsgIn%s"%('RegisterHandler'))

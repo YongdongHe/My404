@@ -8,13 +8,14 @@ from mod.databases.tables import Session
 from mod.databases.tables import User
 from mod.Auth.SessionHelper import SessionHelper
 from mod.BlogHandler.BlogHandler import GravatarHelper
+from mod.BaseHandler import BaseHandler
 
-class IndexHandler(tornado.web.RequestHandler):
+class IndexHandler(BaseHandler):
     def get(self):
         self.render('home.html')
 
 
-class IndexPageHandler(tornado.web.RequestHandler):
+class IndexPageHandler(BaseHandler):
     def get(self):
     	user_session = str(self.get_secure_cookie("session"))
         self.render('homepage/index.html',correct_user=None)
@@ -22,11 +23,7 @@ class IndexPageHandler(tornado.web.RequestHandler):
         remote_ip = str(self.request.headers.get("x-real-ip", "default-ip"))
         print 'remote_ip:%s'%(remote_ip)
 
-class HomePageHandler(tornado.web.RequestHandler):
-    @property
-    def db(self):
-        return self.application.db
-
+class HomePageHandler(BaseHandler):
     def get(self,args):
         askurl = args[0::]
         print "In home handler:"+askurl

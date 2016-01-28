@@ -1,3 +1,4 @@
+from mod.BaseHandler import BaseHandler
 import tornado.ioloop
 import tornado.web
 import tornado.gen
@@ -5,7 +6,7 @@ import tornado.httpserver
 import tornado.options
 import os
 
-class DownloadFileHandler(tornado.web.RequestHandler):
+class DownloadFileHandler(BaseHandler):
     def get(self):
         download_path=self.application.filepath 
         filename = "404helper.apk"

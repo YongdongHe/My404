@@ -4,6 +4,7 @@ import sys
 from tornado.httpclient import HTTPRequest, AsyncHTTPClient
 from mod.databases.tables import Article
 from mod.Auth.SessionHelper import SessionHelper
+from mod.BaseHandler import BaseHandler
 import tornado.web
 import tornado.gen
 import urllib
@@ -12,7 +13,7 @@ import time
 reload(sys)   
 sys.setdefaultencoding('utf8')
 
-class ArticleWriteHandler(tornado.web.RequestHandler):
+class ArticleWriteHandler(BaseHandler):
 
     @property
     def db(self):

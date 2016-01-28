@@ -1,4 +1,5 @@
 from tornado.httpclient import HTTPRequest, AsyncHTTPClient
+from mod.BaseHandler import BaseHandler
 from mod.databases.tables import User
 from mod.databases.tables import Article
 from mod.Auth.SessionHelper import SessionHelper
@@ -6,11 +7,7 @@ import tornado.web
 import tornado.gen
 import urllib
 import hashlib
-
-class BlogHandler(tornado.web.RequestHandler):
-    @property
-    def db(self):
-        return self.application.db
+class BlogHandler(BaseHandler):
     def get(self):
         sessionhelper = SessionHelper(self,self.db)
         correct_user = sessionhelper.checkSession()

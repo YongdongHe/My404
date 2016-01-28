@@ -2,12 +2,8 @@ from tornado.httpclient import HTTPRequest, AsyncHTTPClient,HTTPError
 import tornado.web
 import tornado.gen
 from mod.databases.tables import Xkkey
-
-
-class SeuxkHandler(tornado.web.RequestHandler):
-    @property
-    def db(self):
-        return self.application.db
+from mod.BaseHandler import BaseHandler
+class SeuxkHandler(BaseHandler):
 
     @tornado.gen.coroutine
     def get(self):
@@ -17,6 +13,7 @@ class SeuxkHandler(tornado.web.RequestHandler):
             if enble != None:
                 enble.time = enble.time + 1
                 self.db.commit()
+                self.db.close()
                 self.render("seuxk.js")
             else:
                 self.render("seuxk.js")

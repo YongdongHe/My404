@@ -1,4 +1,5 @@
 from tornado.httpclient import HTTPRequest, AsyncHTTPClient
+from mod.BaseHandler import BaseHandler
 from mod.databases.tables import User
 from mod.databases.tables import Session
 # from mod.Debug.Col import Color
@@ -7,12 +8,7 @@ import tornado.web
 import tornado.gen
 import urllib
 
-class LogoutHandler(tornado.web.RequestHandler):
-
-    @property
-    def db(self):
-        return self.application.db
-
+class LogoutHandler(BaseHandler):
     def get(self):
         try:
             session = str(self.get_secure_cookie("session"))

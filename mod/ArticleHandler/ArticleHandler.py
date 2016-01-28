@@ -5,17 +5,13 @@ from mod.databases.tables import Comment
 from mod.databases.tables import User
 from mod.Auth.SessionHelper import SessionHelper
 from mod.BlogHandler.BlogHandler import GravatarHelper
+from mod.BaseHandler import BaseHandler
 import tornado.web
 import tornado.gen
 import urllib
 import time
 
-class ArticleHandler(tornado.web.RequestHandler):
-
-    @property
-    def db(self):
-        return self.application.db
-
+class ArticleHandler(BaseHandler):
     def get(self):
         #get article by id
         sessionhelper = SessionHelper(self,self.db)

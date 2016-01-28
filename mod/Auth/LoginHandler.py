@@ -1,4 +1,5 @@
 from tornado.httpclient import HTTPRequest, AsyncHTTPClient
+from mod.BaseHandler import BaseHandler
 from mod.databases.tables import User
 from mod.databases.tables import Session
 import uuid
@@ -9,11 +10,7 @@ import tornado.web
 import tornado.gen
 import urllib
 
-class LoginHandler(tornado.web.RequestHandler):
-    @property
-    def db(self):
-        return self.application.db
-
+class LoginHandler(BaseHandler):
     def post(self):
         # debugPrint = Color()
         # debugPrint.print_green_text("DebugMsgIn%s"%('RegisterHandler'))
@@ -40,6 +37,7 @@ class LoginHandler(tornado.web.RequestHandler):
                 data_session = Session(session_value = uuid_session,user_id = correct_user.user_id,create_time=create_time,user_ip=real_ip)
                 self.db.add(data_session)
                 self.db.commit()
+                self.db.close()
                 self.set_secure_cookie("session",uuid_session)
                 #print str(correct_user.user_id)    
                 self.set_secure_cookie("userid",str(correct_user.user_id))

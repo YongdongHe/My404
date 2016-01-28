@@ -6,8 +6,6 @@ import tornado.options
 import tornado.web
 from mod.databases.tables import Session
 from mod.databases.tables import User
-from mod.Auth.SessionHelper import SessionHelper
-from mod.BlogHandler.BlogHandler import GravatarHelper
 
 class BaseHandler(tornado.web.RequestHandler):
     @property
@@ -33,4 +31,7 @@ class BaseHandler(tornado.web.RequestHandler):
             self.db.rollback()
             print 'Exception e in mod.Auth.SessionHelper.checkSession:%s'%(str(e))
             return None
+
+    def on_finish(self):
+        self.db.close()
 
