@@ -21,4 +21,3 @@ class DownloadFileHandler(BaseHandler):
                     break
                 self.write(data)
         self.finish()
-        self.write("s")

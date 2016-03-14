@@ -53,6 +53,39 @@ class Xkkey(Base):
 	key = Column(String)
 	time = Column(Integer)
 
-	
+class Oauthkey(Base):
+	__tablename__ = 'oauthkeys'
+	key_id = Column(Integer,primary_key=True)
+	app_key = Column(String)
+	app_name = Column(String)
 
+class Oauthtoken(Base):
+	__tablename__ = 'oauthtokens'
+	token_id = Column(Integer,primary_key=True)
+	access_token = Column(String)
+	refresh_token = Column(String)
+	auth_code = Column(String)
+	app_key = Column(String)
+	user_id = Column(Integer)
+
+class SlideView(Base):
+	__tablename__ = 'slideviews'
+	id = Column(Integer,primary_key=True)
+	title = Column(String)
+	imageurl = Column(String)
+	url = Column(String)
+
+class PushMessage(Base):
+	__tablename__ = 'pushmessages'
+	id = Column(Integer,primary_key=True)
+	content = Column(String)
+	url = Column(String)
+		
+class Version(Base):
+	__tablename__ = 'versions'
+	id = Column(Integer,primary_key=True)
+	code= Column(Integer)
+	des = Column(String)
+	name = Column(String)
+	date = Column(String)
 
