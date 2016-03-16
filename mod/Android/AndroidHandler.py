@@ -37,6 +37,7 @@ class VersionHandler(BaseHandler):
             response['content']['version'] = {}
             response['content']['version']['code'] = last_version.code
             response['content']['version']['name'] = last_version.name
+            response['content']['version']['des'] = last_version.des
             push_message = self.db.query(PushMessage).first()
             
             #推送消息
