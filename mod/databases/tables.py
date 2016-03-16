@@ -89,3 +89,11 @@ class Version(Base):
 	name = Column(String)
 	date = Column(String)
 
+class AppUser(Base):
+	__tablename__ = 'app_users'
+	id = Column(Integer,primary_key=True)
+	schoolnum = Column(String)
+	login_count = Column(Integer)
+	uuid = Column(String)
+	register_time = Column(String)
+	last_time = Column(String)

@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from mod.BaseHandler import BaseHandler
-from mod.databases.tables import PushMessage,SlideView,Version
+from mod.databases.tables import PushMessage,SlideView,Version,AppUser
+import time
 import tornado.ioloop
 import tornado.web
 import tornado.gen
@@ -31,6 +32,27 @@ class VersionHandler(BaseHandler):
         uuid = self.get_argument("uuid")
         response = {'content':'',"code":''}
         response['content'] = {}
+        try:
+            appuser = self.db.query(AppUser).filter(AppUser.schoolnum == schoolnum).first()
+            now_time = time.strftime('%Y-%m-%d %X',time.localtime(time.time()))
+            if appuser != None :
+                appuser.last_time = now_time
+                appuser.login_count += 1
+                self.db.commit()
+            else:
+                newuser = AppUser(
+                    schoolnum = schoolnum,
+                    uuid = uuid,
+                    register_time = now_time,
+                    last_time = now_time,
+                    login_count = 0
+                    )
+                self.db.add(newuser)
+                self.db.commit()
+        except Exception as e:
+            print str(e)
+            self.db.rollback()
+        #返回版本相关信息
         try:
             #版本信息返回
             last_version = self.db.query(Version).first()
