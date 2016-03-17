@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from mod.BaseHandler import BaseHandler
 from mod.databases.tables import PushMessage,SlideView,Version,AppUser
+from sqlalchemy import text
 import time
 import tornado.ioloop
 import tornado.web
@@ -55,7 +56,7 @@ class VersionHandler(BaseHandler):
         #返回版本相关信息
         try:
             #版本信息返回
-            last_version = self.db.query(Version).first()
+            last_version = self.db.query(Version).order_by(Version.code)[-1]
             response['content']['version'] = {}
             response['content']['version']['code'] = last_version.code
             response['content']['version']['name'] = last_version.name
